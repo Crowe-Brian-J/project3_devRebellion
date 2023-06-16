@@ -1,1 +1,12 @@
-hi guys im hungry
+Django MarkdownX can be used for uploading projects and displaying images within your Django application. While Django MarkdownX primarily focuses on handling Markdown text input and rendering, it also provides support for image uploads and embedding them within the rendered Markdown content.
+
+1.Install and configure Django MarkdownX in your Django project
+
+Define a model for your project that includes a MarkdownxField to store the project content, which may include Markdown text, images, and other media.
+
+Set up the necessary forms and views to handle the project 
+In your template, use the appropriate MarkdownX tags or filters to render the project content, including any uploaded images. You can apply Materialize CSS classes or custom styling to ensure the images are displayed correctly.
+
+Django MarkdownX supports the upload and management of images using the built-in image uploader. You can specify the image upload location, resize options, and other configurations as needed.
+
+By combining Django MarkdownX's image upload functionality with Materialize CSS or other styling techniques, you can create a seamless experience for uploading projects and displaying images within your application. Users can include images within their project descriptions or content, and Django MarkdownX will handle the storage and rendering of those images.
