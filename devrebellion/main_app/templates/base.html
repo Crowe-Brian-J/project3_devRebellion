@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>devRebellion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+</head>
+
+<body class="grey darken-4">
+  <header class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper black">
+        <ul>
+          <li>
+            <a href="/" class="left brand-logo red-text text-accent-4">&nbsp;&nbsp;devRebellion</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li><a class="red-text text-accent-4" href="/about">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main class="container white-text">{% block content %} {% endblock %}</main>
+  <footer class="page-footer">
+    <div class="right">All Rights Reserved, &copy; {% now 'Y' %} devRebellion &nbsp;</div>
+  </footer>
+</body>
+
+</html>
