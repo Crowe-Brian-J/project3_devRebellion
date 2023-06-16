@@ -4,6 +4,10 @@ developers = [
     {'name': 'Mayte Ozoria', 'username':'Ozmayte','email':'ozoria@gmail.com','links':'insert Link'}
 ]
 
+projects = [
+{'name': 'ryans project', 'developer': 'ryan', 'description': 'lets git r done'}
+]
+
 # Define the home view
 def home(request):
     # Include an .html file extension - unlike when rendering EJS templates
@@ -16,4 +20,9 @@ def about(request):
 def developers_index(request):
     return render(request, 'developers/index.html', {
         'developers':developers
+    })
+
+def projects_index(request):
+    return render(request, 'projects/index.html', {
+        'projects': projects
     })
