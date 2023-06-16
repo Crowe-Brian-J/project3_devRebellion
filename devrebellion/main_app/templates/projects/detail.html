@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Project Details</h1>
+
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ project.name }}</span>
+            <p><strong>Name:</strong> {{ project.name }}</p>
+            <p><strong>Developer:</strong> {{ project.developer }}</p>
+            <p><strong>Description:</strong> {{ project.description|linebreaks }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
