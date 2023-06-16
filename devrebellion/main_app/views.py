@@ -15,5 +15,5 @@ def about(request):
 
 def developers_index(request):
     return render(request, 'developers/index.html', {
-        'developers':developers
+        'developers': developers
     })
