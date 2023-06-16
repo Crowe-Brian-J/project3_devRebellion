@@ -12,9 +12,9 @@ developers = [
 
 
 posts = [
-    {"title": "This is a title", "text": "This is some text", "imagesource": ""},
+    {"user": "User 1", "text": "This is some text", "imagesource": ""},
     {
-        "title": "This is another title",
+        "user": "User 2",
         "text": "This is some more text",
         "imagesource": "",
     },
