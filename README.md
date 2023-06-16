@@ -2,7 +2,9 @@
 
 ## 15 June 2023
 
-### [Ryan Crosby](https://www.linkedin.com/in/rcrosby22/) - [Brian Crowe](https://www.linkedin.com/in/brian-j-crowe/) - [Mayte Ozoria](https://www.linkedin.com/in/mayte-ozoria-701b2b22b/)
+| [Ryan Crosby](https://www.linkedin.com/in/rcrosby22/) | [Brian Crowe](https://www.linkedin.com/in/brian-j-crowe/) | [Mayte Ozoria](https://www.linkedin.com/in/mayte-ozoria-701b2b22b/) |
+| ----------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------- |
+| [GitHub](https://github.com/rcrosby22)                | [GitHub](https://github.com/Crowe-Brian-J)                | [GitHub](https://github.com/mayteozoria)                            |
 
 ---
 
