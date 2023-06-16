@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+
 developers = [
     {'name': 'Mayte Ozoria', 'username':'Ozmayte','email':'ozoria@gmail.com','links':'insert Link'}
 ]
