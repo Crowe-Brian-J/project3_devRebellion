@@ -42,3 +42,7 @@ def developers_index(request):
 
 def projects_index(request):
     return render(request, "projects/index.html", {"projects": projects})
+
+
+def feeds_index(request):
+    return render(request, "feeds/index.html", {"posts": posts})
