@@ -36,6 +36,7 @@ Python
 Django
 HTML
 CSS
+AWS S3
 Materialize
 
 ---
