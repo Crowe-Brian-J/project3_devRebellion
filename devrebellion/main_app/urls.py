@@ -7,4 +7,5 @@ urlpatterns = [
     path("developers/", views.developers_index, name="index"),
     path("feeds/", views.feeds_index, name="feeds_index"),
     path('projects/', views.projects_index, name='projects_index'),
+    path('projects/<int:project_id>/', views.projects_detail, name='detail')
 ]
