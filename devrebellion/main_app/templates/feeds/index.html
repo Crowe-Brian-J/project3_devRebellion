@@ -1,0 +1,21 @@
+<!-- This is the feeds index page. It will display all posts from all users (until/unless only followed is implemented)-->
+{% extends 'base.html' %} {% block content %}
+
+<h1>Feed</h1>
+
+{% for post in posts %}
+<div class="row">
+  <!-- Check column sizes for cards -->
+  <div class="col s12 m8">
+    <div class="card black">
+      <div class="card-image">
+        <img src="{{ post.imagesource }}" alt="default image">
+      </div>
+      <div class="card-content white-text">
+        <span class="card-title red-text text-accent-4">{{ post.title }}</span>
+        <p class="white-text">{{ post.text }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}{% endblock %}
