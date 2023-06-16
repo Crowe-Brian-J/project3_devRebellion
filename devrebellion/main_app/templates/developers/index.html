@@ -3,12 +3,13 @@
 <h1>Developers</h1>
 
 {% for developer in developers %}
-<div class="card black">
-  <div class="card-content">
-    <span class="card-title">{{developer.name }}</span>
-    <p>Username: {{developer.username}}</p>
-    <p>Email: {{developer.email}}</p>
-    <p>Links: {{developer.link}}</p>
-  </div>
-</div>
+<div class="card">
+  <div class=" black card-content">
+            <span class="card-title">{{developer.name }}</span>
+            <p>Username: {{developer.username}}</p>
+            <p>Email: {{developer.email}}</p>
+            <p>Links: {{developer.link}}</p>
+        </div>
+        </div>
+    
 {% endfor %} {% endblock %}
