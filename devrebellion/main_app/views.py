@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+developers = [
+    {'name': 'Mayte Ozoria', 'username':'Ozmayte','email':'ozoria@gmail.com','links':'insert Link'}
+]
 
 # Define the home view
 def home(request):
@@ -9,3 +12,8 @@ def home(request):
 
 def about(request):
     return render(request, "about.html")
+
+def developers_index(request):
+    return render(request, 'developers/index.html', {
+        'developers':developers
+    })
