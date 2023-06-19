@@ -44,6 +44,3 @@ class Photo(models.Model):
         return (
             f"Photo for image: {self.url}. Needs to return foreign key at some point."
         )
-
-
-
