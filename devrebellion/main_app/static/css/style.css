@@ -13,4 +13,9 @@ footer.page-footer {
   text-align: right;
 }
 
+.img {
+  color:white;
+  max-width: 100px;
+}
+
 /* about page */
