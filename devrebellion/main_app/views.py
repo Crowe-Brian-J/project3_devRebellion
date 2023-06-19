@@ -1,4 +1,6 @@
-from django.shortcuts import render
+import uuid
+import boto3
+from django.shortcuts import render, redirect
 from .models import Project, Feed
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -42,6 +44,8 @@ def projects_index(request):
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
     return render(request, "projects/detail.html", {"project": project})
+
+
 
 
 def feeds_index(request):

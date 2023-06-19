@@ -4,12 +4,12 @@
 
 <div class="row">
 {% for developer in developers %}
-  <div class="col s12 m4 14">
-    <div class="card">
-    <div class=" black card-content">
+  <div class="col s12 m6 14">
+    <div class="card black">
+    <div class="card-content">
         {% load static %}
       <img src="{% static '/devrebellion/main_app/static/photos/pirate2.png' %}" width="100px">
-      <span class="card-title">{{developer.name }}</span>
+      <span class="card-title red-text text-darken-4">{{developer.name }}</span>
       <p>Username: {{developer.username}}</p>
       <p>Email: {{developer.email}}</p>
       <p>Links: {{developer.link}}</p>
