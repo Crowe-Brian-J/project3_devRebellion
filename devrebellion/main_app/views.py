@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Project
+from .models import Project, Feed
 
 developers = [
     {
@@ -8,16 +8,6 @@ developers = [
         "email": "ozoria@gmail.com",
         "links": "insert Link",
     }
-]
-
-
-posts = [
-    {"user": "User 1", "text": "This is some text", "imagesource": ""},
-    {
-        "user": "User 2",
-        "text": "This is some more text",
-        "imagesource": "",
-    },
 ]
 
 
@@ -39,11 +29,17 @@ def projects_index(request):
     projects = Project.objects.all()
     return render(request, "projects/index.html", {"projects": projects})
 
+
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
-    return render(request, 'projects/detail.html', { 'project': project })
- 
+    return render(request, "projects/detail.html", {"project": project})
 
 
 def feeds_index(request):
-    return render(request, "feeds/index.html", {"posts": posts})
+    feeds = Feed.objects.all()
+    return render(request, "feeds/index.html", {"feeds": feeds})
+
+
+def feeds_detail(request, feed_id):
+    feed = Feed.objects.get(id=feed_id)
+    return render(request, "feeds/detail.html", {"feed": feed})
