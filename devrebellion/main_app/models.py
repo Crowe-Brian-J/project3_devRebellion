@@ -22,7 +22,7 @@ class Project(models.Model):
         return f"{self.name} ({self.id})"
 
     def get_absolute_url(self):
-        return reverse("detail", kwargs={"project_id": self.id})
+        return reverse("projects_detail", kwargs={"project_id": self.id})
 
 
 class Feed(models.Model):
