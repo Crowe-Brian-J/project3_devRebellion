@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.views.generic.edit import CreateView
 
 from django.contrib.auth.models import User
 
@@ -42,3 +43,9 @@ class Photo(models.Model):
         return (
             f"Photo for image: {self.url}. Needs to return foreign key at some point."
         )
+    
+
+class ProjectCreate(CreateView):
+  model = Project
+  fields = '__all__'
+  success_url = '/project/{project_id}'
