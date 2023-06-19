@@ -3,19 +3,22 @@
 
 <h1 class="black-text">Feed</h1>
 
-{% for post in posts %}
-<div class="row">
-  <!-- Check column sizes for cards -->
-  <div class="col s12 m8">
-    <div class="card black">
-      <div class="card-content white-text">
-        <span class="card-title red-text text-accent-4">{{ post.user }}</span>
-        <p class="white-text">{{ post.text }}</p>
-      </div>
-      <div class="card-image">
-        <img src="{{ post.imagesource }}" alt="default image">
+{% for feed in feeds %}
+<a href="{% url 'feeds_detail' feed.id %}">
+  <div class="row">
+    <!-- Check column sizes for cards -->
+    <div class="col s12 m8">
+      <div class="card black">
+        <div class="card-content white-text">
+          <!--insert feed.user(?) below when user fk is instituted-->
+          <span class="card-title red-text text-accent-4">Username</span>
+          <p class="white-text">{{ feed.text }}</p>
+        </div>
+        <div class="card-image">
+          <img src="{{ post.imagesource }}" alt="default image">
+        </div>
       </div>
     </div>
   </div>
-</div>
+</a>
 {% endfor %}{% endblock %}
