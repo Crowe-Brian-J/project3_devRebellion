@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Project, Feed
+from django.views.generic.edit import CreateView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -71,3 +72,9 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+
+class ProjectCreate(CreateView):
+  model = Project
+  fields = '__all__'
+  

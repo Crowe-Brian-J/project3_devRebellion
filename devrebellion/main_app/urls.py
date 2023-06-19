@@ -14,4 +14,5 @@ urlpatterns = [
         "projects/<int:project_id>/", views.projects_detail, name="detail"
     ),  # need to change to projects detail
     path('accounts/signup/', views.signup, name='signup'),
+    path('projects/create/', views.ProjectCreate.as_view(), name='projects_create'),
 ]

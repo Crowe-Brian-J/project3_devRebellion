@@ -26,6 +26,8 @@
           {% if user.is_authenticated %}
           <li><a class="red-text text-accent-4" href="/developers">Developers</a></li>
           <li><a class="red-text text-accent-4" href="/projects">Projects</a></li>
+          <li><a href="{% url 'projects_create' %}">Add a Project</a></li>
+          <li><a href="{% url 'index' %}">View All My Projects</a></li>
           <li><a class="red-text text-accent-4" href="/feeds">Feed</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
