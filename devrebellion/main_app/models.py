@@ -16,7 +16,7 @@ class Project(models.Model):
     name = models.CharField(max_length=100)
     developer = models.CharField(max_length=100)
     description = models.TextField()
-    user = models.ForeignKey(User,null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} ({self.id})"
@@ -38,14 +38,15 @@ class Feed(models.Model):
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
+    project == models.ForeignKey(Project, on_delete=models.CASCADE)
 
     def __str__(self):
         return (
             f"Photo for image: {self.url}. Needs to return foreign key at some point."
         )
-    
+
 
 class ProjectCreate(CreateView):
-  model = Project
-  fields = '__all__'
-  success_url = '/project/{project_id}'
+    model = Project
+    fields = "__all__"
+    success_url = "/project/{project_id}"
