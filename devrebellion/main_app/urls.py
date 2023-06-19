@@ -8,9 +8,10 @@ urlpatterns = [
     path("feeds/<int:feed_id>/", views.feeds_detail, name="feeds_detail"),
     path("projects/create/", views.ProjectCreate.as_view(), name="projects_create"),
     path("projects/", views.projects_index, name="projects_index"),
+    path("projects/<int:project_id>/", views.projects_detail, name="projects_detail"),
     path(
-        "projects/<int:project_id>/", views.projects_detail, name="projects_detail"
-    ),  # need to change to projects detail
+        "projects/<int:project_id>", views.add_projects_photo, name="add_projects_photo"
+    ),
     path(
         "developers/", views.developers_index, name="developers_index"
     ),  # need to change to developers detail

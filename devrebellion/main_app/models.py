@@ -43,6 +43,4 @@ class Photo(models.Model):
     )
 
     def __str__(self):
-        return (
-            f"Photo for image: {self.url}. Needs to return foreign key at some point."
-        )
+        return f"Photo for image: {self.url}. {self.project_id}."

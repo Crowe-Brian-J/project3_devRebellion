@@ -1,11 +1,13 @@
 import uuid
 import boto3
 from django.shortcuts import render, redirect
-from .models import Project, Feed
+from .models import Project, Feed, Photo
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+
+import os
 
 developers = [
     {
@@ -45,6 +47,25 @@ def projects_index(request):
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
     return render(request, "projects/detail.html", {"project": project})
+
+
+def add_projects_photo(request, project_id):
+    photo_file = request.FILES.get("photo-file", None)
+    if photo_file:
+        s3 = boto3.client("s3")
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind(".") :]
+        # just in case something goes wrong
+        try:
+            bucket = os.environ["S3_BUCKET"]
+            s3.upload_fileobj(photo_file, bucket, key)
+            # build the full url string
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            # we can assign to project_id or project (if you have a cat object)
+            Photo.objects.create(url=url, project_id=project_id)
+        except Exception as err:
+            print("An error occurred uploading file to S3")
+            print(err)
+    return redirect("projects_detail", project_id=project_id)
 
 
 def feeds_index(request):
