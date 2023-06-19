@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth.models import User
 
@@ -45,7 +45,4 @@ class Photo(models.Model):
         )
     
 
-class ProjectCreate(CreateView):
-  model = Project
-  fields = '__all__'
-  success_url = '/project/{project_id}'
+

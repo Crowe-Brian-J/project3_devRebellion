@@ -15,4 +15,6 @@ urlpatterns = [
     ),  # need to change to projects detail
     path('accounts/signup/', views.signup, name='signup'),
     path('projects/create/', views.ProjectCreate.as_view(), name='projects_create'),
+    path('projects/<int:pk>/update/', views.ProjectUpdate.as_view(), name='projects_update'),
+    path('projects/<int:pk>/delete/', views.ProjectDelete.as_view(), name='projects_delete'),
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Project, Feed
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -23,7 +23,6 @@ developers = [
 
 # Define the home view
 def home(request):
-    # Include an .html file extension - unlike when rendering EJS templates
     return render(request, "home.html")
 
 
@@ -73,8 +72,16 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-
 class ProjectCreate(CreateView):
   model = Project
   fields = '__all__'
-  
+  success_url = '/project/{project_id}'
+
+class ProjectUpdate(UpdateView):
+  model = Project
+  fields = '__all__'
+
+
+class ProjectDelete(DeleteView):
+  model = Project
+  success_url = '/projects'
