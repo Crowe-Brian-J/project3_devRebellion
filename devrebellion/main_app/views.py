@@ -80,7 +80,7 @@ def signup(request):
 class ProjectCreate(CreateView):
     model = Project
     fields = "__all__"
-    success_url = "/project/{project_id}"
+    # success_url = "/project/{project_id}"
 
 
 class ProjectUpdate(UpdateView):
