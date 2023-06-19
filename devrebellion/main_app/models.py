@@ -46,7 +46,4 @@ class Photo(models.Model):
         )
 
 
-class ProjectCreate(CreateView):
-    model = Project
-    fields = "__all__"
-    success_url = "/project/{project_id}"
+

@@ -15,4 +15,14 @@ urlpatterns = [
         "developers/", views.developers_index, name="developers_index"
     ),  # need to change to developers detail
     path("accounts/signup/", views.signup, name="signup"),
+    path(
+        "projects/<int:pk>/update/",
+        views.ProjectUpdate.as_view(),
+        name="projects_update",
+    ),
+    path(
+        "projects/<int:pk>/delete/",
+        views.ProjectDelete.as_view(),
+        name="projects_delete",
+    ),
 ]
