@@ -38,7 +38,9 @@ class Feed(models.Model):
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, null=True, blank=True
+    )
 
     def __str__(self):
         return (
