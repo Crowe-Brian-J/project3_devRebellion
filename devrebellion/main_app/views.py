@@ -7,6 +7,12 @@ developers = [
         "username": "Ozmayte",
         "email": "ozoria@gmail.com",
         "links": "insert Link",
+    },
+    {
+        "name": "Ryan Crosby",
+        "username": "RyanC",
+        "email": "crosby@gmail.com",
+        "links": "insert Link",
     }
 ]
 

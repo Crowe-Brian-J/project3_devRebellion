@@ -12,3 +12,9 @@ footer.page-footer {
   padding-top: 0;
   text-align: right;
 }
+
+.img {
+  color:white;
+  max-width: 100px;
+}
+
