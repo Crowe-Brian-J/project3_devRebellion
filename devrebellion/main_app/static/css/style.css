@@ -18,4 +18,12 @@ footer.page-footer {
   max-width: 100px;
 }
 
-/* about page */
+
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid white;
+  box-shadow: 0 1px 0 0 #000;}
+
+  button,input,optgroup,select,textarea {
+    color: white;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif
+}
