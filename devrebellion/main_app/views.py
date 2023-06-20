@@ -35,25 +35,23 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
+
 def developers_index(request):  
-    developers = Developer.objects.filter(user=request.user)
+    #might have to drop the filter because we want to see all developers
+    # developers = Developer.objects.all()
+    developers = User.objects.order_by('id')
     return render(request, 'developers/index.html',            
-        {'developers':developers})
+        {'developers': developers})
 
-    #  #** it maybe developer_index
-    # if request.user.is_authenticated:
-    #     developers = Developer.objects.exclude(user=reques.user) #a list of other useers
-    #     return render(request, 'developer/index.html', {"developers": developers})
-    # else: 
-    #     return render(request, 'home.html')
-
-        # ---old one--
-# def developers_index(request):
-#     return render(request, "developers/index.html", {"developers": developers})
+def developers_detail(request,developer_id):
+    developers = Developer.objects.get(id=developer_id)
+    return render(request,'developers/detail.html', {
+        'developer': developer})
 
 
 def projects_index(request):
     projects = Project.objects.all()
+    print(projects)
     return render(request, "projects/index.html", {"projects": projects})
 
 
@@ -88,8 +86,10 @@ def add_projects_photo(request, project_id):
             # 'S3_BUCKET'
     return redirect("projects_detail", project_id=project_id)
 
+
 def add_comment(request, project_id):
-    project = Project.objects.get(id=project)
+    project = Project.objects.get(id=project_id)
+    
 
 def feeds_index(request):
     feeds = Feed.objects.all()
@@ -112,7 +112,8 @@ def signup(request):
             user = form.save()
             # This is how we log a user in via code
             login(request, user)
-            return redirect("index")
+            #add new registration page for developer, user sent to after they sign up, create a developer
+            return redirect("developers_index")
         else:
             error_message = "Invalid sign up - try again"
     # A bad POST or a GET request, so render signup.html with an empty form
@@ -124,7 +125,7 @@ def signup(request):
 class ProjectCreate(CreateView):
     model = Project
     fields = "__all__"
-    success_url = "/project/{project_id}"
+    # success_url = "/projects/{project_id}"
 
 
 class ProjectUpdate(UpdateView):
@@ -135,5 +136,3 @@ class ProjectUpdate(UpdateView):
 class ProjectDelete(DeleteView):
     model = Project
     success_url = "/projects"
-
-
