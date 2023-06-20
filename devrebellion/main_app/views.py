@@ -6,24 +6,25 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 import os
 
-developers = [
-    {
-        "name": "Mayte Ozoria",
-        "username": "Ozmayte",
-        "email": "ozoria@gmail.com",
-        "links": "insert Link",
-    },
-    {
-        "name": "Ryan Crosby",
-        "username": "RyanC",
-        "email": "crosby@gmail.com",
-        "links": "insert Link",
-    },
-]
+# developers = [
+#     {
+#         "name": "Mayte Ozoria",
+#         "username": "Ozmayte",
+#         "email": "ozoria@gmail.com",
+#         "links": "insert Link",
+#     },
+#     {
+#         "name": "Ryan Crosby",
+#         "username": "RyanC",
+#         "email": "crosby@gmail.com",
+#         "links": "insert Link",
+#     },
+# ]
 
 
 # Define the home view
@@ -35,22 +36,18 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
+
 def developers_index(request):  
-    developers = Developer.objects.filter(user=request.user)
+    #might have to drop the filter because we want to see all developers
+    # developers = Developer.objects.all()
+    developers = User.objects.order_by('id')
     return render(request, 'developers/index.html',            
-        {'developers':developers})
+        {'developers': developers})
 
-    #  #** it maybe developer_index
-    # if request.user.is_authenticated:
-    #     developers = Developer.objects.exclude(user=reques.user) #a list of other useers
-    #     return render(request, 'developer/index.html', {"developers": developers})
-    # else: 
-    #     return render(request, 'home.html')
-
-        # ---old one--
-# def developers_index(request):
-#     return render(request, "developers/index.html", {"developers": developers})
-
+def developers_detail(request,developer_id):
+    developers = Developer.objects.get(id=developer_id)
+    return render(request,'developers/detail.html', {
+        'developer': developer})
 
 def projects_index(request):
     projects = Project.objects.all()
