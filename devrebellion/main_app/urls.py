@@ -10,13 +10,6 @@ urlpatterns = [
     path("projects/", views.projects_index, name="projects_index"),
     path("projects/<int:project_id>/", views.projects_detail, name="projects_detail"),
     path(
-        "projects/<int:project_id>", views.add_projects_photo, name="add_projects_photo"
-    ),
-    path(
-        "developers/", views.developers_index, name="developers_index"
-    ),  # need to change to developers detail
-    path("accounts/signup/", views.signup, name="signup"),
-    path(
         "projects/<int:pk>/update/",
         views.ProjectUpdate.as_view(),
         name="projects_update",
@@ -26,4 +19,11 @@ urlpatterns = [
         views.ProjectDelete.as_view(),
         name="projects_delete",
     ),
+    path(
+        "projects/<int:project_id>/add_projects_photo/",
+        views.add_projects_photo,
+        name="add_projects_photo",
+    ),
+    path("developers/", views.developers_index, name="developers_index"),
+    path("accounts/signup/", views.signup, name="signup"),
 ]

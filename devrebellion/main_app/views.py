@@ -54,17 +54,23 @@ def add_projects_photo(request, project_id):
     if photo_file:
         s3 = boto3.client("s3")
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind(".") :]
+        print(s3)
+        # <botocore.client.s3 object at 0xo1ab05890>
+        print(key)
+        # cb6edb8.png
         # just in case something goes wrong
         try:
             bucket = os.environ["S3_BUCKET"]
+            print(bucket)
             s3.upload_fileobj(photo_file, bucket, key)
             # build the full url string
             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-            # we can assign to project_id or project (if you have a cat object)
+            # we can assign to project_id or project (if you have a project object)
             Photo.objects.create(url=url, project_id=project_id)
         except Exception as err:
             print("An error occurred uploading file to S3")
             print(err)
+            # 'S3_BUCKET'
     return redirect("projects_detail", project_id=project_id)
 
 
