@@ -30,4 +30,18 @@
     <br><br>
     <button type="submit" class="btn">Upload Photo</button>
 </form>
+<h2>Comments:</h2>
+{% for comment in comments %}
+    <div>
+        <p>{{ comment.text }}</p>
+        <p>{{ comment.timestamp }}</p>
+    </div>
+{% empty %}
+    <p>No comments yet.</p>
+{% endfor %}
+<form method="POST" action="{% url 'projects_detail' project.id %}">
+    {% csrf_token %}
+    <textarea name="comment_text" placeholder="Add a comment"></textarea>
+    <button type="submit">Post Comment</button>
+</form>
 {% endblock %}

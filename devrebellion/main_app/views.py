@@ -6,25 +6,24 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 from django.contrib.auth import login
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 import os
 
-# developers = [
-#     {
-#         "name": "Mayte Ozoria",
-#         "username": "Ozmayte",
-#         "email": "ozoria@gmail.com",
-#         "links": "insert Link",
-#     },
-#     {
-#         "name": "Ryan Crosby",
-#         "username": "RyanC",
-#         "email": "crosby@gmail.com",
-#         "links": "insert Link",
-#     },
-# ]
+developers = [
+    {
+        "name": "Mayte Ozoria",
+        "username": "Ozmayte",
+        "email": "ozoria@gmail.com",
+        "links": "insert Link",
+    },
+    {
+        "name": "Ryan Crosby",
+        "username": "RyanC",
+        "email": "crosby@gmail.com",
+        "links": "insert Link",
+    },
+]
 
 
 # Define the home view
@@ -36,18 +35,22 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
-
 def developers_index(request):  
-    #might have to drop the filter because we want to see all developers
-    # developers = Developer.objects.all()
-    developers = User.objects.order_by('id')
+    developers = Developer.objects.filter(user=request.user)
     return render(request, 'developers/index.html',            
-        {'developers': developers})
+        {'developers':developers})
 
-def developers_detail(request,developer_id):
-    developers = Developer.objects.get(id=developer_id)
-    return render(request,'developers/detail.html', {
-        'developer': developer})
+    #  #** it maybe developer_index
+    # if request.user.is_authenticated:
+    #     developers = Developer.objects.exclude(user=reques.user) #a list of other useers
+    #     return render(request, 'developer/index.html', {"developers": developers})
+    # else: 
+    #     return render(request, 'home.html')
+
+        # ---old one--
+# def developers_index(request):
+#     return render(request, "developers/index.html", {"developers": developers})
+
 
 def projects_index(request):
     projects = Project.objects.all()
@@ -56,7 +59,14 @@ def projects_index(request):
 
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
-    return render(request, "projects/detail.html", {"project": project})
+    if request.method == "POST":
+        text = request.POST.get("comment_text")
+        comment = Comment(project=project, text=text)
+        comment.save()
+        return redirect("projects_detail", project_id=project_id)
+
+    comments = Comment.objects.filter(project=project).order_by("-timestamp")
+    return render(request, "projects/detail.html", {"project": project, "comments": comments})
 
 
 def add_projects_photo(request, project_id):
@@ -79,8 +89,7 @@ def add_projects_photo(request, project_id):
     return redirect("projects_detail", project_id=project_id)
 
 def add_comment(request, project_id):
-    project = Project.objects.get(id=project_id)
-    
+    project = Project.objects.get(id=project)
 
 def feeds_index(request):
     feeds = Feed.objects.all()

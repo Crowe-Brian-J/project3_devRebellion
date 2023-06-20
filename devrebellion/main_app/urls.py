@@ -27,4 +27,5 @@ urlpatterns = [
         name="add_projects_photo",
     ),
     path("accounts/signup/", views.signup, name="signup"),
+    path('projects/<int:project_id>/add-comment/', views.add_comment, name='add_comment'),
 ]

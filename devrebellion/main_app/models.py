@@ -30,8 +30,9 @@ class Project(models.Model):
         return reverse("projects_detail", kwargs={"project_id": self.id})
 
 class Comment(models.Model):
-    content = models.TextField()
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    text = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
