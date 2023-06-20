@@ -1,20 +1,22 @@
 {% extends 'base.html' %} {% block content %}
+{% load static %}
 
 <h1 style="font-family:Copperplate">Developers</h1>
+
 <div class="row">
-  {% for developer in developers %}
+{% for developer in developers %}
     <div class="col s12 m6 l4">
-      <div class="card black">
-        <div class="card-content">
-          {% load static %}
-          <img src="{% static '/devrebellion/main_app/static/photos/pirate2.png' %}" width="100px">
-          <span class="card-title red-text text-darken-4">{{developer.name }}</span>
-          <p>Username: {{developer.username}}</p>
-          <p>Email: {{developer.email}}</p>
-          <p>Links: {{developer.link}}</p>
-        </div>
+      <div class="card black" style="max-width: 540px">
+      <img src="{% static 'photos/redavatar.png' %}" alt="" width="100px">
+          <div class="card-content">
+            <span class="card-title red-text text-darken-4">{{developer.name }}</span>
+            <p class="red-text text-darken-4">Username: {{developer.username}}</p>
+            <p class="red-text text-darken-4">Email: {{developer.email}}</p>
+            <p class="red-text text-darken-4">Links: {{developer.link}}</p>
+          </div>
       </div>
-</div>
+    </div>
+
 
 
 {% endfor %} {% endblock %}

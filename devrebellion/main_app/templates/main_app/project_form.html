@@ -4,7 +4,7 @@
 {% if project %}
 <h1>Edit <span class="red-text text-darken-4">{{project.name}}</span></h1>
 {% else %}
-<h1>Add Project</h1>
+<h1 style="font-family:Copperplate">Add Project</h1>
 {% endif %}
   <form action="" method="POST">
     {% csrf_token %}
