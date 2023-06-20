@@ -1,11 +1,12 @@
 from django.urls import path
-from . import views
+from . import views 
+
 
 urlpatterns = [
     path("", views.home, name="home"),
     path("about/", views.about, name="about"),
     path("developers/", views.developers_index, name="developers_index"),
-    path("developers/<int:developer_id>/", views.developers_detail, name='detail'),
+    path("developers/<int:developer_id>/", views.developers_detail, name='developers_detail'),
     path("feeds/", views.feeds_index, name="feeds_index"),
     path("feeds/<int:feed_id>/", views.feeds_detail, name="feeds_detail"),
     path("projects/create/", views.ProjectCreate.as_view(), name="projects_create"),
