@@ -1,7 +1,7 @@
 import uuid
 import boto3
 from django.shortcuts import render, redirect
-from .models import Project, Feed, Photo
+from .models import Project, Feed, Photo, Developer
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login
@@ -34,9 +34,21 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
+def developers_index(request):  
+    developers = Developer.objects.filter(user=request.user)
+    return render(request, 'developers/index.html',            
+        {'developers':developers})
 
-def developers_index(request):
-    return render(request, "developers/index.html", {"developers": developers})
+    #  #** it maybe developer_index
+    # if request.user.is_authenticated:
+    #     developers = Developer.objects.exclude(user=reques.user) #a list of other useers
+    #     return render(request, 'developer/index.html', {"developers": developers})
+    # else: 
+    #     return render(request, 'home.html')
+
+        # ---old one--
+# def developers_index(request):
+#     return render(request, "developers/index.html", {"developers": developers})
 
 
 def projects_index(request):
