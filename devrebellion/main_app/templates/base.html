@@ -10,6 +10,7 @@
   <title>devRebellion</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body class="grey darken-4">
@@ -18,21 +19,31 @@
       <div class="nav-wrapper black">
         <ul>
           <li>
-            <a href="/" class="left brand-logo red-text text-accent-4">&nbsp;&nbsp;devRebellion</a>
+            <a style="font-family:Copperplate" href="/" class="left brand-logo red-text text-accent-4">&nbsp;&nbsp;devRebellion</a>
           </li>
         </ul>
         <ul class="right">
-          <li><a class="red-text text-accent-4" href="/about">About</a></li>
+          <li><a style="font-family:Copperplate"class="red-text text-accent-4" href="/about">About</a></li>
           {% if user.is_authenticated %}
-          <li><a class="red-text text-accent-4" href="/developers">Developers</a></li>
-          <li><a class="red-text text-accent-4" href="/projects">Projects</a></li>
-          <li><a href="{% url 'projects_create' %}">Add a Project</a></li>
-          <li><a href="{% url 'projects_index' %}">View All My Projects</a></li>
-          <li><a class="red-text text-accent-4" href="/feeds">Feed</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          <li><a style="font-family:Copperplate"class="red-text text-accent-4" href="/developers">Developers</a></li>
+          <li>
+            <a style="font-family:Copperplate" href="#" class="dropdown-trigger red-text text-accent-4" data-target="dropdown1">
+              Projects<i class="material-icons right"></i>
+            </a>
+          </li>
+          <ul style="font-family:Copperplate"id="dropdown1" class="dropdown-content">
+            <li><a class="red-text text-accent-4"href="{% url 'projects_index' %}">View all Projects</a></li>
+            <li><a class="red-text text-accent-4"style="font-family:Copperplate" href="{% url 'projects_create' %}">Add a Project</a></li>
+          </ul>
+          
+          <!-- <li><a style="font-family:Copperplate"class="red-text text-accent-4" href="/projects">Projects</a></li> -->
+          <!-- <li><a style="font-family:Copperplate"href="{% url 'projects_create' %}">Add a Project</a></li> -->
+          <!-- <li><a style="font-family:Copperplate"href="{% url 'projects_index' %}">View All My Projects</a></li> -->
+          <li><a style="font-family:Copperplate" class="red-text text-accent-4" href="/feeds">Feed</a></li>
+          <li><a style="font-family:Copperplate"href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
-          <li><a href="{% url 'login' %}">Log In</a></li>
+          <li><a style="font-family:Copperplate" href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a style="font-family:Copperplate" href="{% url 'login' %}">Log In</a></li>
           {% endif %}
         </ul>
       </div>
@@ -40,8 +51,16 @@
   </header>
   <main class="container white-text">{% block content %} {% endblock %}</main>
   <footer class="page-footer black red-text text-accent-4">
-    <div class="right">All Rights Reserved, &copy; {% now 'Y' %} devRebellion &nbsp;</div>
+    <div style="font-family:Copperplate" class="right">All Rights Reserved, &copy; {% now 'Y' %} devRebellion &nbsp;</div>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var dropdownElems = document.querySelectorAll('.dropdown-trigger');
+      var options = {
+      };
+      M.Dropdown.init(dropdownElems, options);
+    });
+  </script>
 </body>
 
 </html>
