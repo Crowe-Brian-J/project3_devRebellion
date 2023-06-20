@@ -1,8 +1,9 @@
 import uuid
 import boto3
 from django.shortcuts import render, redirect
-from .models import Project, Feed, Photo, Developer
+from .models import Project, Feed, Photo, Developer, Comment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -80,6 +81,9 @@ def add_projects_photo(request, project_id):
             # 'S3_BUCKET'
     return redirect("projects_detail", project_id=project_id)
 
+def add_comment(request, project_id):
+    project = Project.objects.get(id=project_id)
+    
 
 def feeds_index(request):
     feeds = Feed.objects.all()
@@ -125,3 +129,5 @@ class ProjectUpdate(UpdateView):
 class ProjectDelete(DeleteView):
     model = Project
     success_url = "/projects"
+
+

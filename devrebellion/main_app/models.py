@@ -41,6 +41,13 @@ class Project(models.Model):
     def get_absolute_url(self):
         return reverse("projects_detail", kwargs={"project_id": self.id})
 
+class Comment(models.Model):
+    content = models.TextField()
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Comment {self.id} on Project {self.project_id}"
 
 class Feed(models.Model):
     text = models.TextField()
