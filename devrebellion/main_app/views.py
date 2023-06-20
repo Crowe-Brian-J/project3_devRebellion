@@ -6,25 +6,24 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 from django.contrib.auth import login
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 import os
 
-# developers = [
-#     {
-#         "name": "Mayte Ozoria",
-#         "username": "Ozmayte",
-#         "email": "ozoria@gmail.com",
-#         "links": "insert Link",
-#     },
-#     {
-#         "name": "Ryan Crosby",
-#         "username": "RyanC",
-#         "email": "crosby@gmail.com",
-#         "links": "insert Link",
-#     },
-# ]
+developers = [
+    {
+        "name": "Mayte Ozoria",
+        "username": "Ozmayte",
+        "email": "ozoria@gmail.com",
+        "links": "insert Link",
+    },
+    {
+        "name": "Ryan Crosby",
+        "username": "RyanC",
+        "email": "crosby@gmail.com",
+        "links": "insert Link",
+    },
+]
 
 
 # Define the home view
@@ -57,7 +56,14 @@ def projects_index(request):
 
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
-    return render(request, "projects/detail.html", {"project": project})
+    if request.method == "POST":
+        text = request.POST.get("comment_text")
+        comment = Comment(project=project, text=text)
+        comment.save()
+        return redirect("projects_detail", project_id=project_id)
+
+    comments = Comment.objects.filter(project=project).order_by("-timestamp")
+    return render(request, "projects/detail.html", {"project": project, "comments": comments})
 
 
 def add_projects_photo(request, project_id):
@@ -82,7 +88,6 @@ def add_projects_photo(request, project_id):
 
 def add_comment(request, project_id):
     project = Project.objects.get(id=project_id)
-
 
 def feeds_index(request):
     feeds = Feed.objects.all()
