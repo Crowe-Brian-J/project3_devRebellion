@@ -3,14 +3,31 @@ from django.urls import reverse
 from django.views.generic.edit import CreateView
 
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
-# Create your models here.
-# class Developer(models.Model):
-#   name = models.CharField(max_length=100)
-#   username = models.Charfield(max_length=150)
-#   email = models.TextField(max_length=200)
-#   links = models.
+#inspired from codemy.com for user, and profiles
 
+class Developer(models.Model):    #also shown as profiles. One user to one profile 
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # follows= models.ManyToManyField("self",       #developers can follow several profiles
+        # related_name="followed_by",
+        # symmetrical=False,
+        # blank=True)     #do not  have to have followers
+
+    def __str__(self):
+        return f'{self.name} ({self.id})'
+#create profile(developer) when new user signs up
+
+    # def create_developer(sender, instance, created, **kwargs):
+    #     if created:
+    #         user_developer = Developer(user=instance) #new user created
+    #         user_developer.save()
+    #     #Have the user follow themselves
+    #     # user_developer.follows.set([instance.developer.id])
+    #         user_profile.save()
+
+    #     post_save.connect(create_developer, sender=User)
+    
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
