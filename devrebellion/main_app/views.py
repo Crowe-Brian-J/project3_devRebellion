@@ -105,6 +105,7 @@ def signup(request):
             user = form.save()
             # This is how we log a user in via code
             login(request, user)
+            #add new registration page for developer, user sent to after they sign up, create a developer
             return redirect("developers_index")
         else:
             error_message = "Invalid sign up - try again"
@@ -117,7 +118,7 @@ def signup(request):
 class ProjectCreate(CreateView):
     model = Project
     fields = "__all__"
-    success_url = "/project/{project_id}"
+    # success_url = "/projects/{project_id}"
 
 
 class ProjectUpdate(UpdateView):
