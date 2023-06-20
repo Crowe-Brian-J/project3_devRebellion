@@ -54,11 +54,6 @@ def add_projects_photo(request, project_id):
     if photo_file:
         s3 = boto3.client("s3")
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind(".") :]
-        print(s3)
-        # <botocore.client.s3 object at 0xo1ab05890>
-        print(key)
-        # cb6edb8.png
-        # just in case something goes wrong
         try:
             bucket = os.environ["S3_BUCKET"]
             print(bucket)
