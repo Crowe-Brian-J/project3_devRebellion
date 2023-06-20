@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 
 #inspired from codemy.com for user, and profiles
 class Developer(models.Model):    #also shown as profiles. One user to one profile 
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     print(user)
     
