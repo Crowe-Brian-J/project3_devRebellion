@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from django.views.generic.edit import CreateView 
+from django.views.generic.edit import CreateView
 from datetime import datetime
 
 from django.contrib.auth.models import User
@@ -18,11 +18,11 @@ class Developer(models.Model):  # also shown as profiles. One user to one profil
     def create_developer(sender, instance, created, **kwargs):
         if created:
             Developer.objects.create(user=instance)
-            
+
     @receiver(post_save, sender=User)
-    def save_user_developer(sender,instance, **kwargs):
+    def save_user_developer(sender, instance, **kwargs):
         instance.developer.save()
-    
+
     def __str__(self):
         return f"{self.user} ({self.user.id})"
 
@@ -32,9 +32,7 @@ class Developer(models.Model):  # also shown as profiles. One user to one profil
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
-    user = models.ForeignKey(
-        User, null=True, blank=True, on_delete=models.CASCADE
-    )
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     description = models.TextField()
 
     def __str__(self):
@@ -55,6 +53,7 @@ class Comment(models.Model):
 
 
 class Feed(models.Model):
+    name = models.CharField(max_length=100, default="No Title")
     text = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
