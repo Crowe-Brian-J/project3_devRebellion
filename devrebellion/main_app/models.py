@@ -34,7 +34,12 @@ class Comment(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     text = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+<<<<<<< HEAD
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+=======
     user = models.ForeignKey(Developer, on_delete=models.CASCADE)
+>>>>>>> 295a77e601e3ab27673ad34ad7e0e5919a265abf
 
     def __str__(self):
         return f"Comment {self.id} on Project {self.project_id}"

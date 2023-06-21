@@ -36,16 +36,22 @@ def about(request):
     return render(request, "about.html")
 
 
+<<<<<<< HEAD
+def developers_index(request):  
+    #might have to drop the filter because we want to see all developers
+=======
 def developers_index(request):
     # might have to drop the filter because we want to see all developers
+>>>>>>> 295a77e601e3ab27673ad34ad7e0e5919a265abf
     # developers = Developer.objects.all()
-    developers = User.objects.order_by("id")
-    return render(request, "developers/index.html", {"developers": developers})
+    developers = User.objects.order_by('id')
+    return render(request, 'developers/index.html',            
+        {'developers': developers})
 
-
-def developers_detail(request, developer_id):
+def developers_detail(request,developer_id):
     developers = Developer.objects.get(id=developer_id)
-    return render(request, "developers/detail.html", {"developer": developer})
+    return render(request,'developers/detail.html', {
+        'developer': developer})
 
 
 def projects_index(request):
@@ -88,6 +94,10 @@ def add_projects_photo(request, project_id):
 
 def add_comment(request, project_id):
     project = Project.objects.get(id=project_id)
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 295a77e601e3ab27673ad34ad7e0e5919a265abf
 
 def feeds_index(request):
     feeds = Feed.objects.all()
