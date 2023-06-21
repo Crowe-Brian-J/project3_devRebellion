@@ -61,7 +61,7 @@ class Feed(models.Model):
         return f"{self.text} ({self.id})"
 
     def get_absolute_url(self):
-        return reverse("detail", kwargs={"feed_id": self.id})
+        return reverse("feeds_detail", kwargs={"feed_id": self.id})
 
 
 class Photo(models.Model):
