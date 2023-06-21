@@ -36,22 +36,16 @@ def about(request):
     return render(request, "about.html")
 
 
-<<<<<<< HEAD
-def developers_index(request):  
-    #might have to drop the filter because we want to see all developers
-=======
 def developers_index(request):
     # might have to drop the filter because we want to see all developers
->>>>>>> 295a77e601e3ab27673ad34ad7e0e5919a265abf
     # developers = Developer.objects.all()
-    developers = User.objects.order_by('id')
-    return render(request, 'developers/index.html',            
-        {'developers': developers})
+    developers = User.objects.order_by("id")
+    return render(request, "developers/index.html", {"developers": developers})
 
-def developers_detail(request,developer_id):
+
+def developers_detail(request, developer_id):
     developers = Developer.objects.get(id=developer_id)
-    return render(request,'developers/detail.html', {
-        'developer': developer})
+    return render(request, "developers/detail.html", {"developer": developer})
 
 
 def projects_index(request):
@@ -69,7 +63,9 @@ def projects_detail(request, project_id):
         return redirect("projects_detail", project_id=project_id)
 
     comments = Comment.objects.filter(project=project).order_by("-timestamp")
-    return render(request, "projects/detail.html", {"project": project, "comments": comments})
+    return render(
+        request, "projects/detail.html", {"project": project, "comments": comments}
+    )
 
 
 def add_projects_photo(request, project_id):
@@ -94,10 +90,7 @@ def add_projects_photo(request, project_id):
 
 def add_comment(request, project_id):
     project = Project.objects.get(id=project_id)
-<<<<<<< HEAD
-    
-=======
->>>>>>> 295a77e601e3ab27673ad34ad7e0e5919a265abf
+
 
 def feeds_index(request):
     feeds = Feed.objects.all()
@@ -120,7 +113,7 @@ def signup(request):
             user = form.save()
             # This is how we log a user in via code
             login(request, user)
-            #add new registration page for developer, user sent to after they sign up, create a developer
+            # add new registration page for developer, user sent to after they sign up, create a developer
             return redirect("developers_index")
         else:
             error_message = "Invalid sign up - try again"
