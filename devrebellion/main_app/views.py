@@ -91,6 +91,7 @@ def add_projects_photo(request, project_id):
 def add_comment(request, project_id):
     project = Project.objects.get(id=project_id)
 
+
 def feeds_index(request):
     feeds = Feed.objects.all()
     return render(request, "feeds/index.html", {"feeds": feeds})
