@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView 
+from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -35,8 +36,8 @@ class Project(models.Model):
 
 class Comment(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    text = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True)
+    text = models.TextField(null=True, blank=True)
+    timestamp = models.DateTimeField(default=datetime.now, null=True)
     user = models.ForeignKey(Developer, on_delete=models.CASCADE)
 
     def __str__(self):
