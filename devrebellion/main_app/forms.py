@@ -24,4 +24,7 @@ class DeveloperForm(forms.ModelForm):
 class FeedForm(forms.ModelForm):  # May need to just be ModelForm
     class Meta:
         model = Feed
-        fields = ("text",)
+        fields = (
+            "name",
+            "text",
+        )
