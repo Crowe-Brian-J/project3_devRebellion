@@ -39,7 +39,7 @@ def about(request):
 def developers_index(request):
     # might have to drop the filter because we want to see all developers
     # developers = Developer.objects.all()
-    developers = developer.objects.order_by("id")
+    developers = Developer.objects.order_by("id")
     return render(request, "developers/index.html", {"developers": developers})
 
 
