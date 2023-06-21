@@ -22,8 +22,8 @@ class Developer(models.Model):  # also shown as profiles. One user to one profil
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
-    developer = models.ForeignKey(
-        Developer, null=True, blank=True, on_delete=models.CASCADE
+    user = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.CASCADE
     )
     description = models.TextField()
 
@@ -38,7 +38,7 @@ class Comment(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     text = models.TextField(null=True, blank=True)
     timestamp = models.DateTimeField(default=datetime.now, null=True)
-    user = models.ForeignKey(Developer, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Comment {self.id} on Project {self.project_id}"
@@ -46,7 +46,7 @@ class Comment(models.Model):
 
 class Feed(models.Model):
     text = models.TextField()
-    user = models.ForeignKey(Developer, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.text} ({self.id})"
