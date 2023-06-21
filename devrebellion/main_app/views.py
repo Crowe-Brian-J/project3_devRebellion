@@ -7,7 +7,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CommentForm
+from .forms import CommentForm, UserForm, DeveloperForm 
+from django.db import transaction
+from django.contrib import messages
+from django.utils.translation import gettext as _
+
 
 import os
 
@@ -43,6 +47,26 @@ def developers_index(request):
     developers = Developer.objects.order_by("id")
     return render(request, "developers/index.html", {"developers": developers})
 
+# @login_required
+@transaction.atomic
+def update_developer(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        developer_form = DeveloperForm(request.POST, instance=request.user)
+        if user_form.is_valid() and developer_form.is_valid():
+            user_form.save()
+            developer_form.save()
+            messages.success(request, _('Your profile was successfully updated!'))
+            return redirect('developers_index')  #possible change to developer detail
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance=request.user)
+        developer_form = DeveloperForm(instance=request.user.developer)
+    return render(request,'registration/profile.html',{ #comeback to this line
+        'user_form': user_form,
+        'developer_form' : developer_form
+    })
 
 def developers_detail(request, developer_id):
     developer = Developer.objects.get(id=developer_id)
@@ -126,13 +150,15 @@ def signup(request):
             # This is how we log a user in via code
             login(request, user)
             # add new registration page for developer, user sent to after they sign up, create a developer
-            return redirect("developers_index")
+            return redirect("update_developer")
         else:
             error_message = "Invalid sign up - try again"
     # A bad POST or a GET request, so render signup.html with an empty form
     form = UserCreationForm()
     context = {"form": form, "error_message": error_message}
     return render(request, "registration/signup.html", context)
+
+
 
 
 class ProjectCreate(CreateView):
