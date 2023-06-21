@@ -2,7 +2,11 @@
 {% block content %}
 
 <!--Option to change Feed Detail to Feed's title here (insert title into feed model)-->
-<h1 class="black-text">Feed Detail</h1>
+<h1>Feed Detail</h1>
+<div class="card-panel">
+  <a href="{% url 'feeds_update' feed.id %}">Edit Post</a>
+  <a href="{% url 'feeds_delete' feed.id %}">Delete Post</a>
+</div>
 
 <div class="card black">
   <div class="card-content">

@@ -1,14 +1,25 @@
 from django.urls import path
-from . import views 
+from . import views
 
 
 urlpatterns = [
+    # home urls
     path("", views.home, name="home"),
     path("about/", views.about, name="about"),
+    # developers urls
     path("developers/", views.developers_index, name="developers_index"),
-    path("developers/<int:developer_id>/", views.developers_detail, name='developers_detail'),
+    path(
+        "developers/<int:developer_id>/",
+        views.developers_detail,
+        name="developers_detail",
+    ),
+    # feeds urls
     path("feeds/", views.feeds_index, name="feeds_index"),
     path("feeds/<int:feed_id>/", views.feeds_detail, name="feeds_detail"),
+    path("feeds/create/", views.FeedCreate.as_view(), name="feeds_create"),
+    path("feeds/<int:pk>/update", views.FeedUpdate.as_view(), name="feeds_update"),
+    path("feeds/<int:pk>/delete", views.FeedDelete.as_view(), name="feeds_delete"),
+    # projects urls
     path("projects/create/", views.ProjectCreate.as_view(), name="projects_create"),
     path("projects/", views.projects_index, name="projects_index"),
     path("projects/<int:project_id>/", views.projects_detail, name="projects_detail"),
@@ -27,7 +38,11 @@ urlpatterns = [
         views.add_projects_photo,
         name="add_projects_photo",
     ),
+    # accounts urls
     path("accounts/signup/", views.signup, name="signup"),
-    path('projects/<int:project_id>/add-comment/', views.add_comment, name='add_comment'),
-    path('accounts/profile', views.update_developer, name='update_developer'),
+    # move to projects urls
+    path(
+        "projects/<int:project_id>/add-comment/", views.add_comment, name="add_comment"
+    ),
+    path("accounts/profile", views.update_developer, name="update_developer"),
 ]

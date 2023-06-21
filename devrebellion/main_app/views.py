@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CommentForm, UserForm, DeveloperForm 
+from .forms import CommentForm, UserForm, DeveloperForm
 from django.db import transaction
 from django.contrib import messages
 from django.utils.translation import gettext as _
@@ -47,26 +47,32 @@ def developers_index(request):
     developers = Developer.objects.order_by("id")
     return render(request, "developers/index.html", {"developers": developers})
 
+
 # @login_required
 @transaction.atomic
 def update_developer(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         user_form = UserForm(request.POST, instance=request.user)
         developer_form = DeveloperForm(request.POST, instance=request.user)
         if user_form.is_valid() and developer_form.is_valid():
             user_form.save()
             developer_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
-            return redirect('developers_index')  #possible change to developer detail
+            messages.success(request, _("Your profile was successfully updated!"))
+            return redirect("developers_index")  # possible change to developer detail
         else:
-            messages.error(request, _('Please correct the error below.'))
+            messages.error(request, _("Please correct the error below."))
     else:
         user_form = UserForm(instance=request.user)
         developer_form = DeveloperForm(instance=request.user.developer)
-    return render(request,'registration/profile.html',{ #comeback to this line
-        'user_form': user_form,
-        'developer_form' : developer_form
-    })
+    return render(
+        request,
+        "registration/profile.html",
+        {  # comeback to this line
+            "user_form": user_form,
+            "developer_form": developer_form,
+        },
+    )
+
 
 def developers_detail(request, developer_id):
     developer = Developer.objects.get(id=developer_id)
@@ -91,7 +97,9 @@ def projects_detail(request, project_id):
 
     comments = Comment.objects.filter(project=project).order_by("-timestamp")
     return render(
-        request, "projects/detail.html", {"project": project, "comments": comments, 'comment_form':comment_form}
+        request,
+        "projects/detail.html",
+        {"project": project, "comments": comments, "comment_form": comment_form},
     )
 
 
@@ -118,14 +126,13 @@ def add_projects_photo(request, project_id):
 def add_comment(request, project_id):
     form = CommentForm(request.POST)
     project = Project.objects.get(id=project_id)
-    if form.is_valid(): 
-        new_comment = form.save(commit = False)
-        new_comment.user=request.user
-        new_comment.project=project
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.user = request.user
+        new_comment.project = project
         new_comment.save()
 
-
-    return redirect("projects_detail",project_id=project_id)
+    return redirect("projects_detail", project_id=project_id)
 
 
 def feeds_index(request):
@@ -159,8 +166,6 @@ def signup(request):
     return render(request, "registration/signup.html", context)
 
 
-
-
 class ProjectCreate(CreateView):
     model = Project
     fields = "__all__"
@@ -180,3 +185,22 @@ class ProjectUpdate(UpdateView):
 class ProjectDelete(DeleteView):
     model = Project
     success_url = "/projects"
+
+
+class FeedCreate(CreateView):
+    model = Feed
+    fields = "__all__"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class FeedUpdate(UpdateView):
+    model = Feed
+    fields = "__all__"
+
+
+class FeedDelete(DeleteView):
+    model = Feed
+    success_url = "/feeds"
