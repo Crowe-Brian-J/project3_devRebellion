@@ -5,6 +5,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # inspired from codemy.com for user, and profiles
@@ -13,6 +14,15 @@ class Developer(models.Model):  # also shown as profiles. One user to one profil
     link = models.URLField(blank=True)
     print(user)
 
+    @receiver(post_save, sender=User)
+    def create_developer(sender, instance, created, **kwargs):
+        if created:
+            Developer.objects.create(user=instance)
+            
+    @receiver(post_save, sender=User)
+    def save_user_developer(sender,instance, **kwargs):
+        instance.developer.save()
+    
     def __str__(self):
         return f"{self.user} ({self.user.id})"
 
