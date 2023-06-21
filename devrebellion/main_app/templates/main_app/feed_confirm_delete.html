@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Delete Feed Post</h1>
+<!--Check 'object'-->
+<h4>Are you sure you wnat to delete <span class="red darken-4">{{ object.name }}?</h4>
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes - Delete" class="btn red darken-4">
+  <a href="{% url 'feeds_detail' feed.id %}">Cancel</a>
+</form>
+
+{% endblock %}
