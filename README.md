@@ -83,7 +83,8 @@ As A User (AAU)
 
 ## **_Credits_**
 
-N/A Yet
+[Django: Extend User Model](https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html)
+[Codemy (YouTube): Customize User Profile](https://www.youtube.com/watch?v=Alua227cOmY)
 
 ---
 
