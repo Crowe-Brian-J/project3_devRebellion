@@ -11,14 +11,17 @@
       <img src="{% static 'photos/redavatar.png' %}" alt="" width="100px">
       <div class="card-content">
         <!--Why are we displaying username twice?-->
-        <span class="card-title red-text text-darken-4">{{developer.user.username }}</span>
-        <p class="red-text text-darken-4">Username: {{developer.user.username}}</p>
-        <p class="red-text text-darken-4">Email: {{developer.user.email}}</p>
-        <p class="red-text text-darken-4">Links: {{developer.link}}</p>
+        <p><strong class="red-text text-darken-4">Username:</strong>{{developer.user.username }}</p>
+        <p><strong class="red-text text-darken-4">Email:</strong> {{developer.user.email}}</p>
+        <p><strong class="red-text text-darken-4">Links:</strong> {{developer.user.link}}</p>
+        <div class="card action">
+        <a href="{% url 'developers_detail' user.id %}"><strong class="red-text text-darken-4">More information</strong></a>
+        </div>
       </div>
     </div>
   </div>
+
   {% endfor %}
   {% endif%}
-
+</div>
   {% endblock %}
