@@ -4,21 +4,21 @@
 <h1 style="font-family:Copperplate">Developers</h1>
 
 <div class="row">
-{% if developers %}
+  {% if developers %}
   {% for developer in developers %}
-    <div class="col s12 m6 l4">
-      <div class="card black" style="max-width: 540px">
+  <div class="col s12 m6 l4">
+    <div class="card black" style="max-width: 540px">
       <img src="{% static 'photos/redavatar.png' %}" alt="" width="100px">
-          <div class="card-content">
-            
-            <span class="card-title red-text text-darken-4">{{developer.name }}</span>
-            <p class="red-text text-darken-4">Username: {{developer.username}}</p>
-            <p class="red-text text-darken-4">Email: {{developer.email}}</p>
-            <p class="red-text text-darken-4">Links: {{developer.link}}</p>
-          </div>
+      <div class="card-content">
+        <!--Why are we displaying username twice?-->
+        <span class="card-title red-text text-darken-4">{{developer.user.username }}</span>
+        <p class="red-text text-darken-4">Username: {{developer.user.username}}</p>
+        <p class="red-text text-darken-4">Email: {{developer.user.email}}</p>
+        <p class="red-text text-darken-4">Links: {{developer.user.link}}</p>
       </div>
     </div>
-    {% endfor %}
-{% endif%}
+  </div>
+  {% endfor %}
+  {% endif%}
 
- {% endblock %}
+  {% endblock %}
