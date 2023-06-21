@@ -21,7 +21,7 @@ class DeveloperForm(forms.ModelForm):
         fields = ("link",)
 
 
-class FeedForm(forms.ModelForm):
+class FeedForm(forms.ModelForm):  # May need to just be ModelForm
     class Meta:
         model = Feed
         fields = ("text",)
