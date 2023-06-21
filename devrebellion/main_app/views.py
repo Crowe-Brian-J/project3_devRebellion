@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from .forms import CommentForm
 
 import os
 
@@ -44,7 +45,7 @@ def developers_index(request):
 
 
 def developers_detail(request, developer_id):
-    developers = Developer.objects.get(id=developer_id)
+    developer = Developer.objects.get(id=developer_id)
     return render(request, "developers/detail.html", {"developer": developer})
 
 
@@ -56,15 +57,17 @@ def projects_index(request):
 
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
-    if request.method == "POST":
-        text = request.POST.get("comment_text")
-        comment = Comment(project=project, text=text)
-        comment.save()
-        return redirect("projects_detail", project_id=project_id)
+
+    # if request.method == "POST":
+    #     text = request.POST.get("comment_text")
+    #     comment = Comment(project=project, text=text)
+    #     comment.save()
+    #     return redirect("projects_detail", project_id=project_id)
+    comment_form = CommentForm()
 
     comments = Comment.objects.filter(project=project).order_by("-timestamp")
     return render(
-        request, "projects/detail.html", {"project": project, "comments": comments}
+        request, "projects/detail.html", {"project": project, "comments": comments, 'comment_form':comment_form}
     )
 
 
@@ -89,7 +92,16 @@ def add_projects_photo(request, project_id):
 
 
 def add_comment(request, project_id):
+    form = CommentForm(request.POST)
     project = Project.objects.get(id=project_id)
+    if form.is_valid(): 
+        new_comment = form.save(commit = False)
+        new_comment.user=request.user
+        new_comment.project=project
+        new_comment.save()
+
+
+    return redirect("projects_detail",project_id=project_id)
 
 
 def feeds_index(request):
@@ -126,6 +138,11 @@ def signup(request):
 class ProjectCreate(CreateView):
     model = Project
     fields = "__all__"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
     # success_url = "/projects/{project_id}"
 
 
