@@ -29,4 +29,5 @@ urlpatterns = [
     ),
     path("accounts/signup/", views.signup, name="signup"),
     path('projects/<int:project_id>/add-comment/', views.add_comment, name='add_comment'),
+    path('accounts/profile', views.update_developer, name='update_developer'),
 ]
