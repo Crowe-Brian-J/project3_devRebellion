@@ -1,8 +1,9 @@
 {% extends 'base.html' %}{% block content %}
+
 {% if feed %}
-<h1>Edit - <span class="red-text text-darken-4">"{{feed.name}}"</span></h1>
+<h1 style="font-family:Copperplate">Edit <span class="red-text text-darken-4">"{{feed.name}}"</span></h1>
 {% else %}
-<h1>Add Feed Post</h1>
+<h1 style="font-family:Copperplate">Add Feed Post</h1>
 {% endif %}
 <form action="" method="POST">
   {% csrf_token %}
