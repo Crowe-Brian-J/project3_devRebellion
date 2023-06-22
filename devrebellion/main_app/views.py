@@ -13,7 +13,8 @@ from .forms import CommentForm, UserForm, DeveloperForm, FeedCommentForm
 from django.db import transaction
 from django.contrib import messages
 from django.utils.translation import gettext as _
-
+from django.core.mail import send_mail
+from django.http import HttpResponse
 
 
 import os
@@ -246,3 +247,16 @@ class FeedDelete(DeleteView):
     model = Feed
     success_url = "/feeds"
 
+def send_invite(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')  # Get the email entered by the user
+        subject = 'Join the Rebellion'
+        message = '''We are excited to invite you to join DevRebellion, a vibrant community of passionate developers like yourself. 
+                     With DevRebellion, you can connect with like-minded individuals, participate in coding challenges, and unlock endless opportunities to enhance your skills and showcase your talent. 
+                     Join us today and let's embark on an epic coding journey together!'''
+
+        send_mail(subject, message, 'devrebellion@outlook.com', [email], fail_silently=False)
+        success_message = 'Invitation sent successfully!'
+        return render(request, 'invite/invite.html', {'success_message': success_message})
+    else:
+        return render(request, 'invite/invite.html')

@@ -10,6 +10,7 @@
   <title>devRebellion</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
@@ -24,6 +25,11 @@
           </li>
         </ul>
         <ul class="right">
+          <li>
+          <a href="{% url 'send_invite' %}">
+            <i class="material-icons red-text text-accent-4">person_add</i>
+          </a>
+        </li>
           <li><a style="font-family:Copperplate" class="red-text text-accent-4" href="/about">About</a></li>
           {% if user.is_authenticated %}
           <li><a style="font-family:Copperplate" class="red-text text-accent-4" href="/developers">Developers</a></li>

@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 
 
+
+
 urlpatterns = [
     # home urls
     path("", views.home, name="home"),
@@ -51,4 +53,6 @@ urlpatterns = [
         "projects/<int:project_id>/add-comment/", views.add_comment, name="add_comment"
     ),
     path("accounts/profile", views.update_developer, name="update_developer"),
+    path('invite/', views.send_invite, name='send_invite'),
+    
 ]
