@@ -1,13 +1,13 @@
 import uuid
 import boto3
 from django.shortcuts import render, redirect
-from .models import Project, Feed, Photo, Developer, Comment
+from .models import Project, Feed, Photo, Developer, Comment, FeedComment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CommentForm, UserForm, DeveloperForm
+from .forms import CommentForm, UserForm, DeveloperForm, FeedCommentForm
 from django.db import transaction
 from django.contrib import messages
 from django.utils.translation import gettext as _
@@ -142,7 +142,32 @@ def feeds_index(request):
 
 def feeds_detail(request, feed_id):
     feed = Feed.objects.get(id=feed_id)
-    return render(request, "feeds/detail.html", {"feed": feed})
+
+    feed_comment_form = FeedCommentForm()
+
+    feed_comments = FeedComment.objects.filter(feed=feed).order_by("timestamp")
+
+    return render(
+        request,
+        "feeds/detail.html",
+        {
+            "feed": feed,
+            "feed_comment_form": feed_comment_form,
+            "feed_comments": feed_comments,
+        },
+    )
+
+
+def add_feed_comment(request, feed_id):
+    form = FeedCommentForm(request.POST)
+    feed = Feed.objects.get(id=feed_id)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.user = request.user
+        new_comment.feed = feed
+        new_comment.save()
+
+    return redirect("feeds_detail", feed_id=feed_id)
 
 
 def signup(request):
