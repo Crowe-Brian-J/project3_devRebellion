@@ -246,7 +246,7 @@ def send_invite(request):
                      With DevRebellion, you can connect with like-minded individuals, participate in coding challenges, and unlock endless opportunities to enhance your skills and showcase your talent. 
                      Join us today and let's embark on an epic coding journey together!'''
 
-        send_mail(subject, message, 'your_email@example.com', [email], fail_silently=False)
+        send_mail(subject, message, 'devrebellion@outlook.com', [email],fail_silently=False)
         return HttpResponse('Invitation sent successfully!')
     else:
         return render(request, 'invite/invite.html')  # Render the invite form template

@@ -136,10 +136,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25 # or the appropriate port number for your SMTP server
-EMAIL_HOST_USER = 'your_email@example.com'
-EMAIL_HOST_PASSWORD = 'your_email_password'
-EMAIL_USE_TLS = False  # or EMAIL_USE_SSL = True if using SSL/TLS
-DEFAULT_FROM_EMAIL = 'noreply@devrebellion.com'
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_PORT = 587 # or the appropriate port number for your SMTP server
+EMAIL_HOST_USER = 'devrebellion@outlook.com'
+EMAIL_HOST_PASSWORD = 'Devrebel1234'  # or EMAIL_USE_SSL = True if using SSL/TLS
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True
 
