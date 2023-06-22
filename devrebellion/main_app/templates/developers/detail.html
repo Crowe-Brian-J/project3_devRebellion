@@ -2,8 +2,8 @@
 
 {% block content %}
 <h1 style="font-family: Copperplate">Developer Details</h1>
-<p><strong class="red-text text-darken-4">Username:</strong>{{developer.user.username }}</p>
-<p><strong class="red-text text-darken-4">Email:</strong> {{developer.user.email}}</p>
+<p><strong class="red-text text-darken-4">Username:</strong>{{developer.username }}</p>
+<p><strong class="red-text text-darken-4">Email:</strong> {{developer.email}}</p>
 
 <!-- ----current projects---- -->
 <div class="col s6">
@@ -18,21 +18,23 @@
       <tr><th>Projects:</th></tr>
     </thead>
     <tbody>
-      {% if projects %}
+      <!-- {% if projects %} -->
       {% for project in projects %}
         <tr>
           <td>{{ project.name }}</td> 
         </tr>
       {% endfor %}
-      {% endif %}
+      <!-- {% endif %} -->
       </tbody>
     </table>
   </div>  
 
 
 <!-- ----feeds---- -->
+
 <div class="col s12">
-  <h4>{{developer.user.username }}'s FEEDS</h4>
+  <!-- #was working not anymore -->
+  <h4>{{developer.username }}'s FEEDS</h4>
   <table class="striped">
     <tbody>
       {% for feed in feeds %}
@@ -46,7 +48,14 @@
 <!-- New Markup Above -->
 </div>
 
-
-
+{% if surfing_user == developer.id%}
+<div class="card-action">
+<!-- --come back to this line  -->
+{% csrf_token %}
+{{ user_form.as_p }}
+{{ developer_form.as_p }}
+<a href="{% url 'delete_developer' developer.id  %}">Delete Account</a>
+</div> 
+{% endif%}
 
 {% endblock %}

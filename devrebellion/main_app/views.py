@@ -1,9 +1,9 @@
 import uuid
 import boto3
 from django.shortcuts import render, redirect
-from .models import Project, Feed, Photo, Developer, Comment, FeedComment
+from .models import Project, Feed, Photo, Developer, Comment, FeedComment 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from django.contrib.auth.models import User
 
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -14,7 +14,8 @@ from django.db import transaction
 from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.core.mail import send_mail
-from django.http import HttpResponse
+
+
 
 import os
 
@@ -43,7 +44,7 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
-
+# @login_required
 def developers_index(request):
     # might have to drop the filter because we want to see all developers
     # developers = Developer.objects.all()
@@ -76,16 +77,24 @@ def update_developer(request):
         },
     )
 
-
-def developers_detail(request, developer_id):
-    developer = Developer.objects.get(id=developer_id)
-    projects = Project.objects.filter(user=developer_id)
-    feeds = Feed.objects.filter(user=developer_id)
+# @login_required 
+def developers_detail(request, developer_user_id):
+    developer = User.objects.get(id=developer_user_id)
+    projects = Project.objects.filter(user=developer_user_id)
+    feeds = Feed.objects.filter(user=developer_user_id)
     print(feeds)
     return render(request, "developers/detail.html", {"developer": developer,
-    "projects": projects, "feeds": feeds,
+    "projects": projects, "feeds": feeds, "surfing_user": request.user.id
     })
 
+# @login_required
+def delete_developer(request, developer_user_id):
+    if request.user.id == developer_user_id:
+        developer = User.objects.get(id=developer_user_id)
+        developer.delete()
+        return redirect("about")
+    else: 
+        return redirect("developers_index")
 
 def projects_index(request):
     projects = Project.objects.all()
