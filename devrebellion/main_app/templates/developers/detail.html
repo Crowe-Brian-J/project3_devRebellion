@@ -2,20 +2,23 @@
 
 {% block content %}
 <h1 style="font-family: Copperplate">Developer Details</h1>
-<p><strong class="red-text text-darken-4">Username:</strong>{{developer.username }}</p>
+<p><strong class="red-text text-darken-4">Name:</strong>{{ developer.first_name }} {{developer.last_name}} </p>
+
 <p><strong class="red-text text-darken-4">Email:</strong> {{developer.email}}</p>
+<p>Link:{{ developer.link}}</p>
 
 <!-- ----current projects---- -->
 <div class="col s6">
-  <form action="{% url 'projects_create'  %}" method="POST">
+  <!-- <form action="{% url 'projects_create'  %}" method="POST">
     {% csrf_token %}
     {{ project_form.as_p }}
     <input type="submit" class="btn" value="Add project">
-  </form>
+  </form> -->
   <br>
-  <table class="striped">
+  
     <thead>
       <tr><th>Projects:</th></tr>
+      <table class="striped"></table>
     </thead>
     <tbody>
       <!-- {% if projects %} -->
@@ -55,6 +58,18 @@
 {{ user_form.as_p }}
 {{ developer_form.as_p }}
 <a href="{% url 'delete_developer' developer.id  %}">Delete Account</a>
+</div> 
+{% endif%}
+
+
+
+{% if surfing_user == developer.id%}
+<div class="card-action">
+<!-- --come back to this line  -->
+{% csrf_token %}
+{{ user_form.as_p }}
+{{ developer_form.as_p }}
+<a href="{% url 'edit_developer' developer.id  %}">Edit Profile</a>
 </div> 
 {% endif%}
 
