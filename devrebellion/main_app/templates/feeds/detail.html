@@ -2,18 +2,45 @@
 {% block content %}
 
 <!--Option to change Feed Detail to Feed's title here (insert title into feed model)-->
-<h1>Feed Detail</h1>
-<div class="card-panel">
-  <a href="{% url 'feeds_update' feed.id %}">Edit Post</a>
-  <a href="{% url 'feeds_delete' feed.id %}">Delete Post</a>
-</div>
+<h1 style="font-family:Copperplate">Feed Detail</h1>
 
 <div class="card black">
   <div class="card-content">
     <!-- change username when pk is implemented -->
-    <span class="card-title red-text text-darken-4">{{feed.user}}</span>
-    <p class="red-text"><strong>{{feed.name}}</strong></p>
-    <p>{{feed.text}}</p>
+    <span class="card-title red-text text-darken-4">{{ feed.user }}</span>
+    <p class="red-text"><strong>{{ feed.name }}</strong></p>
+    <p>{{ feed.text }}</p>
+    <span class="red-text text-accent-4">{{ feed.timestamp }}</span>
+  </div>
+  <div class="card-action">
+    <a class="red-text" href="{% url 'feeds_update' feed.id %}">Edit Post</a>
+    <a class="red-text" href="{% url 'feeds_delete' feed.id %}">Delete Post</a>
   </div>
 </div>
+<!--View Comments-->
+<div class="row">
+  <div class="col s11">
+    <h3 style="font-family:Copperplate">Comments:</h3>
+  </div>
+</div>
+{% for feed_comment in feed_comments %}
+<div class="row">
+  <div class="col s11">
+    <div class="card grey darken-3">
+      <div class="card-content">
+        <span class="red-text "> {{ feed_comment.user }}</span>
+        <p class="white-text">{{ feed_comment.text }}</p>
+        <span>{{ feed_comment.timestamp }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<!--Add Comments-->
+<h5 style="font-family:Copperplate">Add a Comment</h5>
+<form method="POST" action="{% url 'add_feed_comment' feed.id%}">
+  {% csrf_token %}
+  {{ feed_comment_form.as_p }}
+  <button class="btn red accent-4" type="submit">Post Comment</button>
+</form>
 {% endblock %}

@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form method="post" >
+<form method="post">
   {% csrf_token %}
   {{ user_form.as_p }}
   {{ developer_form.as_p }}
-  <button type="submit">Save changes</button>
-  <a href="http://localhost:8000/accounts/signup/" target="_blank">Share with a Friend</a>
-
+  <button class="btn red darken-4" type="submit">Save changes</button>
 </form>
 
 {% endblock %}

@@ -21,6 +21,11 @@ urlpatterns = [
     path("feeds/create/", views.FeedCreate.as_view(), name="feeds_create"),
     path("feeds/<int:pk>/update", views.FeedUpdate.as_view(), name="feeds_update"),
     path("feeds/<int:pk>/delete", views.FeedDelete.as_view(), name="feeds_delete"),
+    path(
+        "feeds/<int:feed_id>/add_feed_comment/",
+        views.add_feed_comment,
+        name="add_feed_comment",
+    ),
     # projects urls
     path("projects/create/", views.ProjectCreate.as_view(), name="projects_create"),
     path("projects/", views.projects_index, name="projects_index"),

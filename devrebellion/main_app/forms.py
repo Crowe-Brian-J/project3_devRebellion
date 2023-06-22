@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Comment, User, Developer, Feed
+from .models import Comment, User, Developer, Feed, FeedComment
 from django import forms
 from django.db import models
 
@@ -30,3 +30,7 @@ class FeedForm(forms.ModelForm):  # May need to just be ModelForm
         )
 
 
+class FeedCommentForm(ModelForm):
+    class Meta:
+        model = FeedComment
+        fields = ["text"]
