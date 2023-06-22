@@ -132,3 +132,14 @@ LOGOUT_REDIRECT_URL = "/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25 # or the appropriate port number for your SMTP server
+EMAIL_HOST_USER = 'your_email@example.com'
+EMAIL_HOST_PASSWORD = 'your_email_password'
+EMAIL_USE_TLS = False  # or EMAIL_USE_SSL = True if using SSL/TLS
+DEFAULT_FROM_EMAIL = 'noreply@devrebellion.com'
+
