@@ -29,6 +29,9 @@ class Developer(models.Model):  # also shown as profiles. One user to one profil
     def get_absolute_url(self):
         return reverse("index", kwargs={"developer_id": self.id})
 
+#come back to this line
+    def delete_developer(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
