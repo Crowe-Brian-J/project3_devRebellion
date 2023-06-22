@@ -9,7 +9,7 @@ urlpatterns = [
     # developers urls
     path("developers/", views.developers_index, name="developers_index"),
     path(
-        "developers/<int:developer_id>/",
+        "developers/<int:developer_user_id>/",
         views.developers_detail,
         name="developers_detail",
     ),#come back to this line
