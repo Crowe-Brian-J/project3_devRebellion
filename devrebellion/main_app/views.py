@@ -189,7 +189,7 @@ class ProjectDelete(DeleteView):
 
 class FeedCreate(CreateView):
     model = Feed
-    fields = "__all__"
+    fields = ["name", "text"]
 
     def form_valid(self, form):
         form.instance.user = self.request.user
