@@ -56,12 +56,23 @@ class Feed(models.Model):
     name = models.CharField(max_length=100, default="No Title")
     text = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(default=datetime.now, null=True)
 
     def __str__(self):
         return f"{self.text} ({self.id})"
 
     def get_absolute_url(self):
         return reverse("feeds_detail", kwargs={"feed_id": self.id})
+
+
+class FeedComment(models.Model):
+    feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    timestamp = models.DateTimeField(default=datetime.now, null=True)
+
+    def __str__(self):
+        return f"FeedComment {self.id} on Feed Post {self.feed_id}"
 
 
 class Photo(models.Model):
