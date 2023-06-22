@@ -13,9 +13,9 @@
         <!--Why are we displaying username twice?-->
         <p><strong class="red-text text-darken-4">Username:</strong>{{developer.user.username }}</p>
         <p><strong class="red-text text-darken-4">Email:</strong> {{developer.user.email}}</p>
-        <p><strong class="red-text text-darken-4">Links:</strong> {{developer.user.link}}</p>
+        <p><strong class="red-text text-darken-4">Links:</strong> {{developer.link}}</p>
         <div class="card action">
-        <a href="{% url 'developers_detail' user.id %}"><strong class="red-text text-darken-4">More information</strong></a>
+        <a href="{% url 'developers_detail' developer.user.id %}"><strong class="red-text text-darken-4">More information</strong></a>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ from django.dispatch import receiver
 class Developer(models.Model):  # also shown as profiles. One user to one profile
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     link = models.URLField(blank=True)
-    print(user)
+   
 
     @receiver(post_save, sender=User)
     def create_developer(sender, instance, created, **kwargs):

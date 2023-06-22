@@ -1,7 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-  <h1 style="font-family: Copperplate">Developer information</h1>
+<h1 style="font-family: Copperplate">Developer Details</h1>
+<p><strong class="red-text text-darken-4">Username:</strong>{{developer.user.username }}</p>
+<p><strong class="red-text text-darken-4">Email:</strong> {{developer.user.email}}</p>
+
+<!-- ----current projects---- -->
+<div class="col s6">
+  <form action="{% url 'projects_create'  %}" method="POST">
+    {% csrf_token %}
+    {{ project_form.as_p }}
+    <input type="submit" class="btn" value="Add project">
+  </form>
+  <br>
+  <table class="striped">
+    <thead>
+      <tr><th>Projects:</th></tr>
+    </thead>
+    <tbody>
+      {% if projects %}
+      {% for project in projects %}
+        <tr>
+          <td>{{ project.name }}</td> 
+        </tr>
+      {% endfor %}
+      {% endif %}
+      </tbody>
+    </table>
+  </div>  
+
+
+<!-- ----feeds---- -->
+<div class="col s12">
+  <h4>{{developer.user.username }}'s FEEDS</h4>
+  <table class="striped">
+    <tbody>
+      {% for feed in feeds %}
+      <tr>
+        <td>{{feed.text}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<!-- New Markup Above -->
+</div>
+
+
+
 
 {% endblock %}

@@ -6,6 +6,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CommentForm, UserForm, DeveloperForm
 from django.db import transaction
@@ -76,7 +78,12 @@ def update_developer(request):
 
 def developers_detail(request, developer_id):
     developer = Developer.objects.get(id=developer_id)
-    return render(request, "developers/detail.html", {"developer": developer})
+    projects = Project.objects.filter(user=developer_id)
+    feeds = Feed.objects.filter(user=developer_id)
+    print(feeds)
+    return render(request, "developers/detail.html", {"developer": developer,
+    "projects": projects, "feeds": feeds,
+    })
 
 
 def projects_index(request):
