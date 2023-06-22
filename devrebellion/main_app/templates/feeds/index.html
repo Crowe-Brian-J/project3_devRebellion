@@ -1,7 +1,8 @@
 <!-- This is the feeds index page. It will display all posts from all users (until/unless only followed is implemented)-->
 {% extends 'base.html' %} {% block content %}
 
-<h1 style="font-family:Copperplate" class="white-text">Feed - <a href="{% url 'feeds_create' %}">Add A Post</a></h1>
+<h1 style="font-family:Copperplate" class="white-text">Feed - <a class="red-text text-accent-4"
+    href="{% url 'feeds_create' %}">Add A Post</a></h1>
 
 <!-- Insert login check -->
 
