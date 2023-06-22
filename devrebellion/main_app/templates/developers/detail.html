@@ -46,7 +46,14 @@
 <!-- New Markup Above -->
 </div>
 
-
-
+{% if user == developer.user.id%}
+<div class="card-action">
+<!-- --come back to this line  -->
+{% csrf_token %}
+{{ user_form.as_p }}
+{{ developer_form.as_p }}
+<a href="{% url 'delete_developer' developer.user.id  %}">Delete Account</a>
+</div> 
+{% endif%}
 
 {% endblock %}
