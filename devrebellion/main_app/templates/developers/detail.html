@@ -16,7 +16,7 @@
         {% csrf_token %}
         {{ user_form.as_p }}
         {{ developer_form.as_p }}
-          <a class="btn-floating btn-large waves-effect waves-light red darken-4" href="{% url 'developer_edit' developer.id  %}"><i class="material-icons right">Edit Profile</i></a>
+          <a class="waves-effect waves-light btn red darken-4" href="{% url 'developer_edit' developer.id  %}">Edit Profile</a>
           {% endif%}
   </div>
 </div>
@@ -67,9 +67,6 @@
 <br>
 <h4 style="font-family:Copperplate">Technologies:</h4>
 <div class="chips"></div>
-  <div class="chips chips-initial"></div>
-  <div class="chips chips-placeholder"></div>
-  <div class="chips chips-autocomplete"></div>
       
 
 
