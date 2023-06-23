@@ -24,6 +24,25 @@ input:not([type]):focus:not([readonly]),input[type=text]:not(.browser-default):f
   box-shadow: 0 1px 0 0 #F44336
 }
 
-.vl {
-  border-left: 6px solid green;
-  height: 500px;}
+.chips.focus {
+  border-bottom: 1px solid red;
+  -webkit-box-shadow: 0 1px 0 0 red;
+  box-shadow: 0 1px 0 0 red
+}
+
+.chips .input {
+  background: none;
+  border: 0;
+  color: red;
+  display: inline-block;
+  font-size: 16px;
+  height: 3rem;
+  line-height: 32px;
+  outline: 0;
+  margin: 0;
+  padding: 0 !important;
+  width: 120px !important
+}
+
+
+
