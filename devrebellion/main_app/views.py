@@ -57,6 +57,7 @@ def update_developer(request):
     if request.method == "POST":
         user_form = UserForm(request.POST, instance=request.user)
         developer_form = DeveloperForm(request.POST, instance=request.user)
+        print(user_form)
         if user_form.is_valid() and developer_form.is_valid():
             user_form.save()
             developer_form.save()
@@ -81,7 +82,7 @@ def developers_detail(request, developer_user_id):
     developer = User.objects.get(id=developer_user_id)
     projects = Project.objects.filter(user=developer_user_id)
     feeds = Feed.objects.filter(user=developer_user_id)
-    print(feeds)
+    print(developer)
     return render(request, "developers/detail.html", {"developer": developer,
     "projects": projects, "feeds": feeds, "surfing_user": request.user.id
     })
@@ -96,13 +97,13 @@ def delete_developer(request, developer_user_id):
         return redirect("developers_index")
 
 # ----new edit ---
-# might have to remove developer_id argument 
 def edit_developer(request, developer_user_id):
-
+    # developer = request.user.developer
     if request.method == 'POST':
         # d = User.objects.get(id=developer_user_id)
         user_form = UserForm(request.POST, instance=request.user)
         developer_form = DeveloperForm(request.POST, instance=request.user)
+        print(developer_form, "this is a developer form")
         if user_form.is_valid() and developer_form.is_valid():
             print('user')
             user_form.save()

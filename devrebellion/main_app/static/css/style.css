@@ -24,6 +24,6 @@ input:not([type]):focus:not([readonly]),input[type=text]:not(.browser-default):f
   box-shadow: 0 1px 0 0 #F44336
 }
 
-.form-field {
-  font-family:white;
-}
+.vl {
+  border-left: 6px solid green;
+  height: 500px;}

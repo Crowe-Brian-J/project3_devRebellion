@@ -14,7 +14,7 @@ urlpatterns = [
         name="developers_detail",
     ),#come back to this line
     path("developers/<int:developer_user_id>/delete", views.delete_developer, name='delete_developer'),
-    path("developers/<int:developer_user_id>/edit", views.edit_developer, name="edit_developer"),
+    path("developers/<int:developer_user_id>/edit", views.edit_developer, name="developer_edit"),
     # feeds urls
     path("feeds/", views.feeds_index, name="feeds_index"),
     path("feeds/<int:feed_id>/", views.feeds_detail, name="feeds_detail"),

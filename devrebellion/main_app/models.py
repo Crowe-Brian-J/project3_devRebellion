@@ -11,8 +11,9 @@ from django.dispatch import receiver
 # inspired from codemy.com for user, and profiles
 class Developer(models.Model):  # also shown as profiles. One user to one profile
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    link = models.URLField(blank=True)
+    link = models.CharField(max_length=255, null=True, blank=True,)
    
+ 
 
     @receiver(post_save, sender=User)
     def create_developer(sender, instance, created, **kwargs):
@@ -20,11 +21,12 @@ class Developer(models.Model):  # also shown as profiles. One user to one profil
             Developer.objects.create(user=instance)
 
     @receiver(post_save, sender=User)
-    def save_user_developer(sender, instance, **kwargs):
+    def save_user_developer(sender, instance,  **kwargs):
         instance.developer.save()
+        
 
     def __str__(self):
-        return f"{self.user} ({self.user.id})"
+        return f"{self.user} {self.link} ({self.user.id})"
 
     def get_absolute_url(self):
         return reverse("index", kwargs={"developer_id": self.id})
