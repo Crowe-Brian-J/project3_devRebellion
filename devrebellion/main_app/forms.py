@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from .models import Comment, User, Developer, Feed, FeedComment
 from django import forms
-
+from django.db import models
 
 class CommentForm(ModelForm):
     class Meta:

@@ -12,8 +12,6 @@ from django.dispatch import receiver
 class Developer(models.Model):  # also shown as profiles. One user to one profile
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     link = models.CharField(max_length=255, null=True, blank=True,)
-   
- 
 
     @receiver(post_save, sender=User)
     def create_developer(sender, instance, created, **kwargs):
@@ -31,9 +29,10 @@ class Developer(models.Model):  # also shown as profiles. One user to one profil
     def get_absolute_url(self):
         return reverse("index", kwargs={"developer_id": self.id})
 
-#come back to this line
+    # come back to this line
     def delete_developer(self, *args, **kwargs):
         super().delete(*args, **kwargs)
+
 
 class Project(models.Model):
     name = models.CharField(max_length=100)

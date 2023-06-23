@@ -1,7 +1,7 @@
 import uuid
 import boto3
 from django.shortcuts import render, redirect
-from .models import Project, Feed, Photo, Developer, Comment, FeedComment 
+from .models import Project, Feed, Photo, Developer, Comment, FeedComment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 
@@ -13,7 +13,7 @@ from .forms import CommentForm, UserForm, DeveloperForm, FeedCommentForm
 from django.db import transaction
 from django.contrib import messages
 from django.utils.translation import gettext as _
-
+from django.core.mail import send_mail
 
 
 import os
@@ -42,6 +42,7 @@ def home(request):
 
 def about(request):
     return render(request, "about.html")
+
 
 # @login_required
 def developers_index(request):
@@ -77,7 +78,8 @@ def update_developer(request):
         },
     )
 
-# @login_required 
+
+# @login_required
 def developers_detail(request, developer_user_id):
     developer = User.objects.get(id=developer_user_id)
     projects = Project.objects.filter(user=developer_user_id)
@@ -274,3 +276,21 @@ class FeedDelete(DeleteView):
     model = Feed
     success_url = "/feeds"
 
+
+def send_invite(request):
+    if request.method == "POST":
+        email = request.POST.get("email")  # Get the email entered by the user
+        subject = "Join the Rebellion"
+        message = """We are excited to invite you to join DevRebellion, a vibrant community of passionate developers like yourself. 
+                     With DevRebellion, you can connect with like-minded individuals, participate in coding challenges, and unlock endless opportunities to enhance your skills and showcase your talent. 
+                     Join us today and let's embark on an epic coding journey together!"""
+
+        send_mail(
+            subject, message, "devrebellion@outlook.com", [email], fail_silently=False
+        )
+        success_message = "Invitation sent successfully!"
+        return render(
+            request, "invite/invite.html", {"success_message": success_message}
+        )
+    else:
+        return render(request, "invite/invite.html")
