@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<html>
+<head>
+    <title>Invite Friends</title>
+</head>
+<body>
+  <h1 style="font-family:Copperplate">Lets Grow The Rebellion</h1>
+  <form class="col s12" method="post" action="{% url 'send_invite' %}">
+      {% csrf_token %}
+      <div class="row">
+          <div class="input-field col s12">
+              <label style="font-family:Copperplate" for="email">Fellow Mates:</label>
+              <input type="email" id="email">
+          </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s12">
+              <button style="font-family:Copperplate" class="btn-large waves-effect waves-light red accent-4" type="submit">Send Invitation</button>
+          </div>
+      </div>
+  </form>
+  {% if success_message %}
+    <p>{{ success_message }}</p>
+{% endif %}
+ <p style="font-family:Copperplate">Advise invitations may be sent to spam if its your first mutiny</p>
+  
+</body>
+</html>
+{% endblock %}
