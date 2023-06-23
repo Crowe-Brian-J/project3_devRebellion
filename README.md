@@ -54,16 +54,18 @@ Retain ownership and control over your comments, allowing you to update or delet
 Enhance your project, post, and comment descriptions with visually appealing pictures, making your content more engaging and impactful.
 Promote your professional profile by including links to your GitHub, LinkedIn, or other relevant platforms, expanding your network and opportunities.
 These accomplishments empower you as a user, offering a rich and interactive experience within the platform.
----
 
+---
 
 ## **_Credits_**
 
 [Django: Extend User Model](https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html)
 [Codemy (YouTube): Customize User Profile](https://www.youtube.com/watch?v=Alua227cOmY)
 [Django: Core Mail](https://hackr.io/blog/how-to-send-emails-in-django#setting-up).
+
 ---
 
 ## **_Screenshots_**
 
-N/A Yet
+![Image](/devrebellion/main_app/static/photos/developers_index.png)
+![Image](/devrebellion/main_app/static/photos/project_details.png)
