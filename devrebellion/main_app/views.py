@@ -84,6 +84,7 @@ def developers_detail(request, developer_user_id):
     developer = User.objects.get(id=developer_user_id)
     projects = Project.objects.filter(user=developer_user_id)
     feeds = Feed.objects.filter(user=developer_user_id)
+<<<<<<< HEAD
     print(feeds)
     return render(
         request,
@@ -105,6 +106,48 @@ def delete_developer(request, developer_user_id):
         return redirect("about")
     else: 
         return redirect("developers_index")
+=======
+    print(developer)
+    return render(request, "developers/detail.html", {"developer": developer,
+    "projects": projects, "feeds": feeds, "surfing_user": request.user.id
+    })
+
+# @login_required
+def delete_developer(request, developer_user_id):
+  if request.user.id == developer_user_id:
+       developer = User.objects.get(id=developer_user_id)
+       developer.delete()
+       return redirect("about")
+  else: 
+        return redirect("developers_index")
+
+# ----new edit ---
+def edit_developer(request, developer_user_id):
+    # developer = request.user.developer
+    if request.method == 'POST':
+        # d = User.objects.get(id=developer_user_id)
+        user_form = UserForm(request.POST, instance=request.user)
+        developer_form = DeveloperForm(request.POST, instance=request.user)
+        print(developer_form, "this is a developer form")
+        if user_form.is_valid() and developer_form.is_valid():
+            print('user')
+            user_form.save()
+            developer_form.save()
+            return redirect('developers_detail', developer_user_id)
+    else: 
+        d = User.objects.get(id=developer_user_id)
+        user_form = UserForm(request.POST, instance=request.user)
+        developer_form = DeveloperForm(request.POST, instance=request.user)
+    return render(
+        request,
+        "registration/profile.html",
+        {  # comeback to this line
+            "user_form": user_form,
+            "developer_form": developer_form,
+            
+        },
+    )
+>>>>>>> 8922e7e9fc9a493b80c64a1499a7dd0f3450b879
 
 def projects_index(request):
     projects = Project.objects.all()
