@@ -292,7 +292,7 @@ def send_invite(request):
         subject = "Join the Rebellion"
         message = """We are excited to invite you to join DevRebellion, a vibrant community of passionate developers like yourself. 
                      With DevRebellion, you can connect with like-minded individuals, participate in coding challenges, and unlock endless opportunities to enhance your skills and showcase your talent. 
-                     Join us today and let's embark on an epic coding journey together!"""
+                     Join us today and let's embark on an epic coding journey together! All you have to do is copy and paste https://devrebellion.fly.dev/accounts/signup/"""
 
         send_mail(
             subject, message, "devrebellion@outlook.com", [email], fail_silently=False
