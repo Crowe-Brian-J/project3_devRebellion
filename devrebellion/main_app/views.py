@@ -84,6 +84,29 @@ def developers_detail(request, developer_user_id):
     developer = User.objects.get(id=developer_user_id)
     projects = Project.objects.filter(user=developer_user_id)
     feeds = Feed.objects.filter(user=developer_user_id)
+<<<<<<< HEAD
+    print(feeds)
+    return render(
+        request,
+        "developers/detail.html",
+        {
+            "developer": developer,
+            "projects": projects,
+            "feeds": feeds,
+            "surfing_user": request.user.id,
+        },
+    )
+
+
+# @login_required
+def delete_developer(request, developer_user_id):
+    if request.user.id == developer_user_id:
+        developer = User.objects.get(id=developer_user_id)
+        developer.delete()
+        return redirect("about")
+    else: 
+        return redirect("developers_index")
+=======
     print(developer)
     return render(request, "developers/detail.html", {"developer": developer,
     "projects": projects, "feeds": feeds, "surfing_user": request.user.id
@@ -124,6 +147,7 @@ def edit_developer(request, developer_user_id):
             
         },
     )
+>>>>>>> 8922e7e9fc9a493b80c64a1499a7dd0f3450b879
 
 def projects_index(request):
     projects = Project.objects.all()

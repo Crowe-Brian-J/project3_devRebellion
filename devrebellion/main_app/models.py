@@ -12,6 +12,11 @@ from django.dispatch import receiver
 class Developer(models.Model):  # also shown as profiles. One user to one profile
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     link = models.CharField(max_length=255, null=True, blank=True,)
+<<<<<<< HEAD
+   
+ 
+=======
+>>>>>>> 8922e7e9fc9a493b80c64a1499a7dd0f3450b879
 
     @receiver(post_save, sender=User)
     def create_developer(sender, instance, created, **kwargs):
