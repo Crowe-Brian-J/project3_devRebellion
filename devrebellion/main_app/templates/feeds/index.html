@@ -1,8 +1,9 @@
 <!-- This is the feeds index page. It will display all posts from all users (until/unless only followed is implemented)-->
 {% extends 'base.html' %} {% block content %}
 
-<h1 style="font-family:Copperplate" class="white-text">Feed - <a class="red-text text-accent-4"
-    href="{% url 'feeds_create' %}">Add A Post</a></h1>
+<h1 style="font-family:Copperplate" class="center brown-text text-lighten-5">Feed</h1>
+  
+<div class="center-align"><a class="red darken-4 btn brown-text text-lighten-5" href="{% url 'feeds_create' %}">Add A Post</a></div>
 
 <!-- Insert login check -->
 
@@ -16,8 +17,8 @@
         <div class="card-content white-text">
           <!--insert feed.user(?) below when user fk is instituted-->
           <span class="card-title red-text text-accent-4">{{ feed.user.username }}</span>
-          <p class="red-text"><strong>{{ feed.name }}</strong></p>
-          <p class="white-text">{{ feed.text }}</p>
+          <p style="font-family:Copperplate"class="red-text"><strong>{{ feed.name }}</strong></p>
+          <p style="font-family:Copperplate" class="brown-text text-lighten-5">{{ feed.text }}</p>
           <span class="red-text text-accent-4">{{ feed.timestamp }}</span>
         </div>
         <!-- <div class="card-image">
