@@ -28,8 +28,8 @@
   <div class="col s11">
     <div class="card grey darken-3">
       <div class="card-content">
-        <span class="red-text "> {{ feed_comment.user }}</span>
-        <p class="white-text">{{ feed_comment.text }}</p>
+        <span style="font-family:Copperplate" class="red-text "> {{ feed_comment.user }}</span>
+        <p style="font-family:Copperplate" class="white-text">{{ feed_comment.text }}</p>
         <span>{{ feed_comment.timestamp }}</span>
       </div>
     </div>
@@ -41,6 +41,6 @@
 <form method="POST" action="{% url 'add_feed_comment' feed.id%}">
   {% csrf_token %}
   {{ feed_comment_form.as_p }}
-  <button class="btn red accent-4" type="submit">Post Comment</button>
+  <button style="font-family:Copperplate" class="btn red accent-4" type="submit">Post Comment</button>
 </form>
 {% endblock %}
