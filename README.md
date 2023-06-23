@@ -43,49 +43,25 @@ Materialize
 
 ## **_User Stories_**
 
-As A User (AAU)
+As a User (AAU), here's what we have accomplished for you:
 
-- AAU, I should be able to login (Django Auth)
-- AAU, I should be able to post a project
-- AAU, I should be able to post text
-- AAU, only I should be able to update/delete my projects/text
-- AAU, I should be able to comment on projects or posts
-- AAU, only I should be able to update/delete my comments
-- AAU, I should be able to post pictures to coincide with my projects, posts and comments
-- AAU, I should be able to post links to my github, linkedin, etc.
-- AAU, my projects should have links to my deployed projects, github
-
+Seamlessly log in to your account using Django Auth, ensuring a secure and personalized experience.
+Share your projects effortlessly by posting them on the platform, enabling you to showcase your work to a wider audience.
+Express your ideas and thoughts through text-based posts, providing a platform for you to engage and connect with other users.
+Enjoy complete control over your content as only you have the authority to update or delete your projects and text posts.
+Engage with the community by leaving comments on other users' projects or posts, fostering collaboration and feedback.
+Retain ownership and control over your comments, allowing you to update or delete them as needed.
+Enhance your project, post, and comment descriptions with visually appealing pictures, making your content more engaging and impactful.
+Promote your professional profile by including links to your GitHub, LinkedIn, or other relevant platforms, expanding your network and opportunities.
+These accomplishments empower you as a user, offering a rich and interactive experience within the platform.
 ---
 
-## **_MVP_**
-
-- Realistic Idea (Developer Social Media Site)
-- Beautiful, professional ReadMe.md
-- Have Group Members:
-  - Names
-  - Links to Socials
-  - Detailed Description
-  - Technologies Used
-  - Getting Started (i.e. links to deployed site/Trello)
-  - Screenshots
-  - Future Updates
-  - Credits
-- At least:
-  - 1 1-to-Many Associations
-  - 1 Many-to-Many Associations
-- Full CRUD Operations
-- User Authentication utilizing protected routes
-- At least 80 meaningful git commits
-- Properly Spaced, Indented, and within Code Blocks
-- Deployed Wherever the Instructors Decide
-
----
 
 ## **_Credits_**
 
 [Django: Extend User Model](https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html)
 [Codemy (YouTube): Customize User Profile](https://www.youtube.com/watch?v=Alua227cOmY)
-
+[Django: Core Mail](https://hackr.io/blog/how-to-send-emails-in-django#setting-up).
 ---
 
 ## **_Screenshots_**
