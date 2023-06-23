@@ -8,8 +8,10 @@
 
 
 <div class="valign-wrapper"></div>
-  <div class=" center-align">
-  <h4><p><strong class="red-text text-darken-4">Name: </strong>{{ developer.first_name }} {{developer.last_name}} </p></h4>
+<div class=" center-align">
+  <h4>
+    <p><strong class="red-text text-darken-4">Name: </strong>{{ developer.first_name }} {{developer.last_name}} </p>
+  </h4>
   <p><strong class="red-text text-darken-4">Username: </strong> {{developer.username}}</p>
   <p><strong class="red-text text-darken-4">Email: </strong> {{developer.email}}</p>
   {% if surfing_user == developer.id%}
@@ -72,21 +74,22 @@
 
 
 
-  <div class="right-align">
-      <br><br/>
-      {% if surfing_user == developer.id%}
-      {% csrf_token %}
-      {{ user_form.as_p }}
-      {{ developer_form.as_p }}
-    
-      <a style="font-family:Copperplate" class="waves-effect waves-light btn red darken-4" href="{% url 'delete_developer' developer.id  %}">Delete Account</a>
-      {% endif%}
-    </div>
+<div class="right-align">
+  <br><br />
+  {% if surfing_user == developer.id%}
+  {% csrf_token %}
+  {{ user_form.as_p }}
+  {{ developer_form.as_p }}
+
+  <a style="font-family:Copperplate" class="waves-effect waves-light btn red darken-4"
+    href="{% url 'delete_developer' developer.id  %}">Delete Account</a>
+  {% endif%}
+</div>
 
 
 
 <script>
-   document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     let elems = document.querySelector('.chips');
     let options = {
       placeholder: 'Enter a tag',
