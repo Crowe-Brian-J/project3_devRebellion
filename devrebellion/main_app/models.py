@@ -11,16 +11,11 @@ from django.dispatch import receiver
 # inspired from codemy.com for user, and profiles
 class Developer(models.Model):  # also shown as profiles. One user to one profile
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-<<<<<<< HEAD
-    link = models.CharField(max_length=255, null=True, blank=True,)
-
-=======
     link = models.CharField(
         max_length=255,
         null=True,
         blank=True,
     )
->>>>>>> 7e150f2222221c2f4e469a4bbfecefd08a61f436
 
     @receiver(post_save, sender=User)
     def create_developer(sender, instance, created, **kwargs):
