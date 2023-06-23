@@ -9,8 +9,9 @@
 
 <div class="valign-wrapper"></div>
   <div class=" center-align">
-  <h5><p><strong class="red-text text-darken-4">Name:</strong>{{ developer.first_name }} {{developer.last_name}} </p></h5>
-  <p><strong class="red-text text-darken-4">Email:</strong> {{developer.email}}</p>
+  <h4><p><strong class="red-text text-darken-4">Name: </strong>{{ developer.first_name }} {{developer.last_name}} </p></h4>
+  <p><strong class="red-text text-darken-4">Username: </strong> {{developer.username}}</p>
+  <p><strong class="red-text text-darken-4">Email: </strong> {{developer.email}}</p>
   {% if surfing_user == developer.id%}
   <div class="right-align">
         {% csrf_token %}
@@ -85,8 +86,8 @@
 
 <script>
    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelector('.chips');
-    var options = {
+    let elems = document.querySelector('.chips');
+    let options = {
       placeholder: 'Enter a tag',
       secondaryPlaceholder: '+Tag',
       data: [
@@ -95,7 +96,7 @@
         { tag: 'C++' }
       ]
     };
-    var instances = M.Chips.init(elems, options);
+    let instances = M.Chips.init(elems, options);
   });
 </script>
 
