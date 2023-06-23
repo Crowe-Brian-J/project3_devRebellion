@@ -2,8 +2,8 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: Copperplate,sans-serif;
 }
-
 main {
   flex: 1 0 auto;
 }
@@ -24,6 +24,7 @@ input:not([type]):focus:not([readonly]),input[type=text]:not(.browser-default):f
   box-shadow: 0 1px 0 0 #F44336
 }
 
+<<<<<<< HEAD
 .chips.focus {
   border-bottom: 1px solid red;
   -webkit-box-shadow: 0 1px 0 0 red;
@@ -46,3 +47,9 @@ input:not([type]):focus:not([readonly]),input[type=text]:not(.browser-default):f
 
 
 
+=======
+.vl {
+  border-left: 6px solid green;
+  height: 500px;
+}
+>>>>>>> 7a1168762b3b8ed6fdde225acbd8bdad5735df9f

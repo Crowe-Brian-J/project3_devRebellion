@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 {% load static %}
 
-<h1 style="font-family:Copperplate">Developers</h1>
+<h1 class="center brown-text text-lighten-5" style="font-family:Copperplate">Developers</h1>
 
 <div class="row">
   {% if developers %}
@@ -10,16 +10,19 @@
     <div class="card black card-panel hoverable" style="max-width: 540px">
       <img src="{% static 'photos/redavatar.png' %}" alt="" width="100px">
       <div class="card-content">
-        <!--Why are we displaying username twice?-->
-        <p><strong class="red-text text-darken-4">Name:</strong>{{ developer.user.first_name }}
-          {{developer.user.last_name}} </p>
-        <p><strong class="red-text text-darken-4">Username:</strong>{{developer.user.username }}</p>
-        <p><strong class="red-text text-darken-4">Email:</strong> {{developer.user.email}}</p>
+        <p><strong style="font-family:Copperplate"class="red-text text-darken-4">Name:</strong>{{ developer.user.first_name }} {{developer.user.last_name}} </p>
+        <p><strong style="font-family:Copperplate"class="red-text text-darken-4">Username:</strong>{{developer.user.username }}</p>
+        <p><strong style="font-family:Copperplate" class="red-text text-darken-4">Email:</strong> {{developer.user.email}}</p>
         <!-- <p><strong class="red-text text-darken-4">Links:</strong> {{developer.link}}</p> -->
+<<<<<<< HEAD
         <div class="card-action">
           <a href="{% url 'developers_detail' developer.user.id %}"><strong class="black space 
             red-text text-darken-4">More
               information</strong></a>
+=======
+        <div class="card action">
+        <a style="font-family:Copperplate" href="{% url 'developers_detail' developer.user.id %}"><strong class=" red-text text-darken-4 ">More information</strong></a>
+>>>>>>> 7a1168762b3b8ed6fdde225acbd8bdad5735df9f
         </div>
       </div>
     </div>

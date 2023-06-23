@@ -55,9 +55,9 @@
             <li><a class="red-text text-accent-4" href="{% url 'feeds_create' %}">New Feed Post</a></li>
           </ul>
           <!-- <li><a style="font-family:Copperplate" class="red-text text-accent-4" href="/feeds">Feed</a></li> -->
-          <li><a style="font-family:Copperplate" href="{% url 'logout' %}">Log Out</a></li>
+          <li><a class="red-text text-accent-4" style="font-family:Copperplate" href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
-          <li><a style="font-family:Copperplate" href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a class="red-text text-accent-4" style="font-family:Copperplate" href="{% url 'signup' %}">Sign Up</a></li>
           <li><a style="font-family:Copperplate" href="{% url 'login' %}">Log In</a></li>
           {% endif %}
         </ul>
