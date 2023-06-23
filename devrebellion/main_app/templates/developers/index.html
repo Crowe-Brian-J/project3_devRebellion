@@ -7,13 +7,14 @@
   {% if developers %}
   {% for developer in developers %}
   <div class="col s12 m6 l4">
-    <div class="card black" style="max-width: 540px">
+    <div class="card black card-panel hoverable" style="max-width: 540px">
       <img src="{% static 'photos/redavatar.png' %}" alt="" width="100px">
       <div class="card-content">
         <!--Why are we displaying username twice?-->
+        <p><strong class="red-text text-darken-4">Name:</strong>{{ developer.user.first_name }} {{developer.user.last_name}} </p>
         <p><strong class="red-text text-darken-4">Username:</strong>{{developer.user.username }}</p>
         <p><strong class="red-text text-darken-4">Email:</strong> {{developer.user.email}}</p>
-        <p><strong class="red-text text-darken-4">Links:</strong> {{developer.link}}</p>
+        <!-- <p><strong class="red-text text-darken-4">Links:</strong> {{developer.link}}</p> -->
         <div class="card action">
         <a href="{% url 'developers_detail' developer.user.id %}"><strong class="red-text text-darken-4">More information</strong></a>
         </div>
