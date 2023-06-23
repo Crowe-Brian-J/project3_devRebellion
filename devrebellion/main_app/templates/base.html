@@ -21,15 +21,15 @@
         <ul>
           <li>
             <a style="font-family:Copperplate" href="/"
-              class="left brand-logo red-text text-accent-4">&nbsp;&nbsp;devRebellion</a>
+              class="left brand-logo red-text text-accent-4">&nbsp;&nbsp;DevRebellion</a>
           </li>
         </ul>
         <ul class="right">
           <li>
-          <a href="{% url 'send_invite' %}">
-            <i class="material-icons red-text text-accent-4">person_add</i>
-          </a>
-        </li>
+            <a href="{% url 'send_invite' %}">
+              <i class="material-icons red-text text-accent-4">person_add</i>
+            </a>
+          </li>
           <li><a style="font-family:Copperplate" class="red-text text-accent-4" href="/about">About</a></li>
           {% if user.is_authenticated %}
           <li><a style="font-family:Copperplate" class="red-text text-accent-4" href="/developers">Developers</a></li>
